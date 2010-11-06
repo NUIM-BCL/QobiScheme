@@ -1,0 +1,93 @@
+		     QobiScheme---A Library for Scheme->C
+
+			     Jeffrey Mark Siskind
+		School of Electrical and Computer Engineering
+			      Purdue University
+		  Electrical Engineering Building, Room 330
+			   465 Northwestern Avenue
+		       West Lafayette IN 47907-2035 USA
+			     voice: 765/496-3197
+			      fax: 765/494-6440
+			       qobi@purdue.edu
+		       http://www.ece.purdue.edu/~qobi
+
+			    Tuesday 24 August 2010
+
+				 INTRODUCTION
+
+This is release 1.44 of QobiScheme.  It is the underlying substrate for most of
+the Scheme software that is produced by me and my students.  Before you
+install QobiScheme you must first install Infrastructure, which you can obtain
+by anonymous FTP from
+ftp://dynamo.ecn.purdue.edu/pub/qobi/infrastructure.tar.Z.
+This release of QobiScheme requires version 1.27 of Infrastructure, or better.
+
+				 INSTALLATION
+
+To compile QobiScheme, first unpack the distribution:
+
+% uncompress QobiScheme-1.44.tar.Z
+% tar xvf QobiScheme-1.44.tar
+% rm QobiScheme-1.44.tar
+% cd QobiScheme-1.44/source
+
+The makefile for QobiScheme is distributed with architecture-specific
+variables for the several architectures.  Before compiling, you should do:
+
+% architecture-path
+
+and check to see that there is an entry in the makefile for that architecture.
+If not, edit the makefile to add an entry for your architecture.  Since
+architecture names are specific to a particular machine level and OS version,
+you can often copy an existing entry and just change the name.  For example,
+an entry for i586-Linux-2.0.29 is likely to be identical to one for
+i686-Linux-2.0.27.
+
+Then do the following:
+
+% make port
+% cd `architecture-path`
+% make install
+
+The above can be repeated for as many architectures as you wish to support.
+
+				 PORTABILITY
+
+QobiScheme has been tested only under Solaris 1.1.3, 2.4, 2.5, and 2.6 on
+Sun/SPARCs, Linux 2.0.0, 2.0.18, 2.0.27, 2.0.30, 2.0.32, 2.0.33, 2.0.34,
+2.0.35, and 2.2.1 on Intel/x86s, FreeBSD 2.2-STABLE on Intel/x86s, Linux
+2.0.35 and OSF/1 V3.2 and V4.0 on DEC/Alphas, and Irix 4.0.5, 5.3, and 6.2 on
+SGI/MIPSs, though it may work under other operating systems on other platforms.
+
+			       ACKNOWLEDGEMENTS
+
+Thanks to James Rootham for contributing the CPU time procedures.  Thanks to
+Richard Mann for contributing the API to C arrays and OpenGL.  Thanks to Marc
+Feeley for giving me access to an Alpha running OSF/1 and to the Computer
+Science Department at Rice University for giving me access to a Pentium Pro
+running FreeBSD to produce those ports.
+
+				COMMUNICATION
+
+Bug mail should be addressed to Bug-QobiScheme@AI.MIT.EDU and not to me
+personally.  Periodic announcements of bug fixes, enhancements, and new
+releases will be made to Info-QobiScheme@AI.MIT.EDU.
+
+				HOW TO OBTAIN
+
+The current release of QobiScheme is available by anonymous FTP from
+ftp://dynamo.ecn.purdue.edu/pub/qobi/QobiScheme.tar.Z.
+
+				  CONDITIONS
+
+The current release of QobiScheme is provided for free on an as-is basis with
+no warrantee.  You are free to use, copy, and distribute this software provided
+that:
+
+ 1. You report *ALL* bugs to Bug-QobiScheme@AI.MIT.EDU whether or not you
+    need them fixed.  Include the version number (1.44) in the message.
+ 2. You report *ALL* bugs that you fixed to Bug-QobiScheme@AI.MIT.EDU.
+    Include the version number (1.44) in the message.
+ 3. You inform me that you obtained a copy of QobiScheme by sending a message
+    to Info-QobiScheme-Request@AI.MIT.EDU to be put on the
+    Info-QobiScheme@AI.MIT.EDU mailing list.

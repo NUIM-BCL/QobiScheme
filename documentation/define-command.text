@@ -1,0 +1,30 @@
+<type> ::= integer-argument | real-argument | string-argument
+<nondefaulted-argument> ::= (<variable> <doc> <type>)
+<defaulted-argument> ::= (<variable> <doc> <type> <default>)
+<nondefaulted-keyword> ::= (<name> <supplied?> <nondefaulted-argument>*)
+<defaulted-keyword> ::= (<name> <supplied?> <defaulted-argument>*)
+<keyword> ::= (any-number <nondefaulted-keyword>*)
+          |   (at-most-one <defaulted-keyword>*)
+          |   (at-least-one <nondefaulted-keyword>+)
+          |   (exactly-one <defaulted-keyword>+)
+<required> ::= (required (<variable> <doc> <type>))
+<optional> ::= (optional (<variable> <doc> <type> <default>))
+<rest>     ::= (rest (<variable> <doc> <type>))
+<arguments> ::= <keyword>* <required>* <optional>* [<rest>]
+
+(define-command (<name> <arguments>) <expression>+)
+
+<name> and <doc> are strings.
+<doc> is only used for documentation.
+There can't be a <name> "usage". A -usage is created automatically.
+All of the <variable>s and <supplied?>s must be distinct.
+All of the <name>s must be distinct.
+Can define new <type>s as:
+ (lambda (string) (if (ok? string) (string->value string) (usage <doc>)))
+
+Wish list:
+
+ 1. Standardize handling of pathname extensions.
+ 2. Automatically define and set global variables.
+ 3. Inheritance of command arguments across programs in a project.
+ 4. Standardize init files for defaults.

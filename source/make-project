@@ -1,0 +1,25 @@
+#!/bin/tcsh -f
+# make-project <project-name> <first-component-name> <first-application-name>
+rm -rf ~/$1
+mkdir ~/$1
+mkdir ~/$1/archive
+mkdir ~/$1/documentation
+mkdir ~/$1/releases
+mkdir ~/$1/source
+touch ~/$1/source/stub.c
+touch ~/$1/source/stub.h
+cat <<eof >/tmp/minimal-project.sed
+s/minimal-project/$1/g
+s/component/$2/g
+s/minimal-application/$3/g
+eof
+sed -f /tmp/minimal-project.sed\
+    ~/include/minimal-project-makefile\
+    >~/$1/source/makefile
+sed -f /tmp/minimal-project.sed\
+    ~/include/minimal-projectlib-component.sc\
+    >~/$1/source/${1}lib-$2.sc
+sed -f /tmp/minimal-project.sed\
+    ~/include/minimal-application.sc\
+    >~/$1/source/$3.sc
+rm /tmp/minimal-project.sed
