@@ -2,7 +2,7 @@ AC_PREREQ([2.67])
 AC_INIT([QobiScheme], [1.44], [qobi@purdue.edu])
 AC_CANONICAL_SYSTEM
 AC_CONFIG_SRCDIR([source/jdhuff.h])
-AC_CONFIG_HEADERS([config.h])
+dnl AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC

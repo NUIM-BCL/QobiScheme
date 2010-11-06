@@ -3,13 +3,13 @@
 
 # Site configuration
 # ------------------
-INSTALLDIR = $(QINSTALLDIR)
-ARCHITECTURE_PATH = $(QARCHITECTURE_PATH)
-INSTALLLIB = $(INSTALLDIR)/lib
-INSTALLLIBA = $(INSTALLLIB)/$(ARCHITECTURE_PATH)
-INSTALLBIN = $(INSTALLDIR)/bin
+ARCHITECTURE_PATH = @target@
+INSTALLLIB = @libdir@
+INSTALLBIN = @bindir@
+INSTALLINCLUDE = @includedir@
+
 INSTALLBINA = $(INSTALLBIN)/$(ARCHITECTURE_PATH)
-INSTALLINCLUDE = $(INSTALLDIR)/include
+INSTALLLIBA = $(INSTALLLIB)/$(ARCHITECTURE_PATH)
 INSTALLINCLUDEA = $(INSTALLINCLUDE)/$(ARCHITECTURE_PATH)
 
 CC = @CC@
@@ -30,67 +30,10 @@ SCC = @SCC@
 RELEASE_VERSION = 1.44
 RELEASE_FILE = QobiScheme-$(RELEASE_VERSION)
 
-all: error$(ERROR_OK) body qsci sch
+include files.mk
 
-# To add a new architecture, add architecture-specific lines.
-# The line prefix should be '#`architecture-path ', see examples below.
-port:
-	-rm -rf $(ARCHITECTURE_PATH)
-	mkdir $(ARCHITECTURE_PATH)
-	cd $(ARCHITECTURE_PATH); csh -cf "ln -s ../*.{sc,sch,load,c,h} ."
-	$(MAKE) port-makefile
+all: body qsci sch
 
-port-makefile:
-	echo "# This file was generated automatically.  Do not edit." >\
-		$(ARCHITECTURE_PATH)/makefile
-	echo "# ----------------------------------------------------" >>\
-		$(ARCHITECTURE_PATH)/makefile
-	echo ARCHITECTURE_PATH = $(ARCHITECTURE_PATH) >>\
-		$(ARCHITECTURE_PATH)/makefile
-	echo ERROR_OK = _no_error >> $(ARCHITECTURE_PATH)/makefile
-	grep "^#$(ARCHITECTURE_PATH)" makefile | \
-		sed "s/#$(ARCHITECTURE_PATH) //" >>\
-			$(ARCHITECTURE_PATH)/makefile
-	echo include ../makefile >> $(ARCHITECTURE_PATH)/makefile
-
-error:
-	@echo "Do 'make port' to create an architecture-specific directory."
-	@exit 1
-
-error_no_error:
-
-
-OBJECTS = QobiScheme.o nobuff.o xflush.o os_dep.o dither.o \
-16bit.o gdith.o ordered.o 2x2.o gray.o ordered2.o ctrlbar.o hybrid.o \
-parseblock.o decoders.o hybriderr.o play_api.o floatdct.o play_jrevdct.o \
-readfile.o fs2.o mb_ordered.o util.o fs2fast.o mono.o util32.o fs4.o \
-motionvector.o video.o bframe.o iframe.o pframe.o bitio.o nojpeg.o postdct.o \
-block.o encode_jrevdct.o psearch.o bsearch.o libpnmrw.o rate.o combine.o \
-mfwddct.o readframe.o encode_api.o mheaders.o rgbtoycc.o frame.o mpeg.o \
-specifics.o frametype.o noparallel.o subsample.o fsize.o opts.o huff.o \
-param.o jcomapi.o jutils.o jerror.o jmemmgr.o jmemnobs.o jcapimin.o \
-jcapistd.o jctrans.o jcparam.o jdatadst.o jcinit.o jcmaster.o jcmarker.o \
-jcmainct.o jcprepct.o jccoefct.o jccolor.o jcsample.o jchuff.o jcphuff.o \
-jcdctmgr.o jfdctfst.o jfdctflt.o jfdctint.o jdapimin.o jdapistd.o jdtrans.o \
-jdatasrc.o jdmaster.o  jdinput.o jdmarker.o jdhuff.o jdphuff.o jdmainct.o \
-jdcoefct.o jdpostct.o jddctmgr.o jidctfst.o jidctflt.o jidctint.o jidctred.o \
-jdsample.o jdcolor.o jquant1.o jquant2.o jdmerge.o
-
-AD_OBJECTS = QobiScheme-AD.o nobuff.o xflush.o os_dep.o dither.o \
-16bit.o gdith.o ordered.o 2x2.o gray.o ordered2.o ctrlbar.o hybrid.o \
-parseblock.o decoders.o hybriderr.o play_api.o floatdct.o play_jrevdct.o \
-readfile.o fs2.o mb_ordered.o util.o fs2fast.o mono.o util32.o fs4.o \
-motionvector.o video.o bframe.o iframe.o pframe.o bitio.o nojpeg.o postdct.o \
-block.o encode_jrevdct.o psearch.o bsearch.o libpnmrw.o rate.o combine.o \
-mfwddct.o readframe.o encode_api.o mheaders.o rgbtoycc.o frame.o mpeg.o \
-specifics.o frametype.o noparallel.o subsample.o fsize.o opts.o huff.o \
-param.o jcomapi.o jutils.o jerror.o jmemmgr.o jmemnobs.o jcapimin.o \
-jcapistd.o jctrans.o jcparam.o jdatadst.o jcinit.o jcmaster.o jcmarker.o \
-jcmainct.o jcprepct.o jccoefct.o jccolor.o jcsample.o jchuff.o jcphuff.o \
-jcdctmgr.o jfdctfst.o jfdctflt.o jfdctint.o jdapimin.o jdapistd.o jdtrans.o \
-jdatasrc.o jdmaster.o  jdinput.o jdmarker.o jdhuff.o jdphuff.o jdmainct.o \
-jdcoefct.o jdpostct.o jddctmgr.o jidctfst.o jidctflt.o jidctint.o jidctred.o \
-jdsample.o jdcolor.o jquant1.o jquant2.o jdmerge.o
 
 arc:
 	-csh -cf "rm -rf ../archive/`archive-date`"
