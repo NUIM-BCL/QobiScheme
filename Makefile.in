@@ -1,0 +1,817 @@
+# Makefile for QobiScheme
+# -----------------------
+
+# Site configuration
+# ------------------
+INSTALLDIR = $(QINSTALLDIR)
+ARCHITECTURE_PATH = $(QARCHITECTURE_PATH)
+INSTALLLIB = $(INSTALLDIR)/lib
+INSTALLLIBA = $(INSTALLLIB)/$(ARCHITECTURE_PATH)
+INSTALLBIN = $(INSTALLDIR)/bin
+INSTALLBINA = $(INSTALLBIN)/$(ARCHITECTURE_PATH)
+INSTALLINCLUDE = $(INSTALLDIR)/include
+INSTALLINCLUDEA = $(INSTALLINCLUDE)/$(ARCHITECTURE_PATH)
+
+CC = @CC@
+CFLAGS = -O2
+SCCFLAGS = -O2
+PLAYCFLAGS = -O2 -DNDEBUG -DNONANSI_INCLUDES -I/usr/include -I/usr/openwin/include
+ENCODECFLAGS = -I/usr/include -O2
+JPEGCFLAGS = -O2 -DINLINE_YES
+USLEEP =
+AR = @AR@ rc
+RANLIB = @RANLIB@
+SCCLDFLAGS =
+LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a -L/usr/openwin/lib -lX11
+ADLRL = QobiScheme-AD.a $(INSTALLLIBA)/scxl.a -L/usr/openwin/lib -lX11
+
+
+SCC = @SCC@
+RELEASE_VERSION = 1.44
+RELEASE_FILE = QobiScheme-$(RELEASE_VERSION)
+
+all: error$(ERROR_OK) body qsci sch
+
+# To add a new architecture, add architecture-specific lines.
+# The line prefix should be '#`architecture-path ', see examples below.
+port:
+	-rm -rf $(ARCHITECTURE_PATH)
+	mkdir $(ARCHITECTURE_PATH)
+	cd $(ARCHITECTURE_PATH); csh -cf "ln -s ../*.{sc,sch,load,c,h} ."
+	$(MAKE) port-makefile
+
+port-makefile:
+	echo "# This file was generated automatically.  Do not edit." >\
+		$(ARCHITECTURE_PATH)/makefile
+	echo "# ----------------------------------------------------" >>\
+		$(ARCHITECTURE_PATH)/makefile
+	echo ARCHITECTURE_PATH = $(ARCHITECTURE_PATH) >>\
+		$(ARCHITECTURE_PATH)/makefile
+	echo ERROR_OK = _no_error >> $(ARCHITECTURE_PATH)/makefile
+	grep "^#$(ARCHITECTURE_PATH)" makefile | \
+		sed "s/#$(ARCHITECTURE_PATH) //" >>\
+			$(ARCHITECTURE_PATH)/makefile
+	echo include ../makefile >> $(ARCHITECTURE_PATH)/makefile
+
+error:
+	@echo "Do 'make port' to create an architecture-specific directory."
+	@exit 1
+
+error_no_error:
+
+
+OBJECTS = QobiScheme.o nobuff.o xflush.o os_dep.o dither.o \
+16bit.o gdith.o ordered.o 2x2.o gray.o ordered2.o ctrlbar.o hybrid.o \
+parseblock.o decoders.o hybriderr.o play_api.o floatdct.o play_jrevdct.o \
+readfile.o fs2.o mb_ordered.o util.o fs2fast.o mono.o util32.o fs4.o \
+motionvector.o video.o bframe.o iframe.o pframe.o bitio.o nojpeg.o postdct.o \
+block.o encode_jrevdct.o psearch.o bsearch.o libpnmrw.o rate.o combine.o \
+mfwddct.o readframe.o encode_api.o mheaders.o rgbtoycc.o frame.o mpeg.o \
+specifics.o frametype.o noparallel.o subsample.o fsize.o opts.o huff.o \
+param.o jcomapi.o jutils.o jerror.o jmemmgr.o jmemnobs.o jcapimin.o \
+jcapistd.o jctrans.o jcparam.o jdatadst.o jcinit.o jcmaster.o jcmarker.o \
+jcmainct.o jcprepct.o jccoefct.o jccolor.o jcsample.o jchuff.o jcphuff.o \
+jcdctmgr.o jfdctfst.o jfdctflt.o jfdctint.o jdapimin.o jdapistd.o jdtrans.o \
+jdatasrc.o jdmaster.o  jdinput.o jdmarker.o jdhuff.o jdphuff.o jdmainct.o \
+jdcoefct.o jdpostct.o jddctmgr.o jidctfst.o jidctflt.o jidctint.o jidctred.o \
+jdsample.o jdcolor.o jquant1.o jquant2.o jdmerge.o
+
+AD_OBJECTS = QobiScheme-AD.o nobuff.o xflush.o os_dep.o dither.o \
+16bit.o gdith.o ordered.o 2x2.o gray.o ordered2.o ctrlbar.o hybrid.o \
+parseblock.o decoders.o hybriderr.o play_api.o floatdct.o play_jrevdct.o \
+readfile.o fs2.o mb_ordered.o util.o fs2fast.o mono.o util32.o fs4.o \
+motionvector.o video.o bframe.o iframe.o pframe.o bitio.o nojpeg.o postdct.o \
+block.o encode_jrevdct.o psearch.o bsearch.o libpnmrw.o rate.o combine.o \
+mfwddct.o readframe.o encode_api.o mheaders.o rgbtoycc.o frame.o mpeg.o \
+specifics.o frametype.o noparallel.o subsample.o fsize.o opts.o huff.o \
+param.o jcomapi.o jutils.o jerror.o jmemmgr.o jmemnobs.o jcapimin.o \
+jcapistd.o jctrans.o jcparam.o jdatadst.o jcinit.o jcmaster.o jcmarker.o \
+jcmainct.o jcprepct.o jccoefct.o jccolor.o jcsample.o jchuff.o jcphuff.o \
+jcdctmgr.o jfdctfst.o jfdctflt.o jfdctint.o jdapimin.o jdapistd.o jdtrans.o \
+jdatasrc.o jdmaster.o  jdinput.o jdmarker.o jdhuff.o jdphuff.o jdmainct.o \
+jdcoefct.o jdpostct.o jddctmgr.o jidctfst.o jidctflt.o jidctint.o jidctred.o \
+jdsample.o jdcolor.o jquant1.o jquant2.o jdmerge.o
+
+arc:
+	-csh -cf "rm -rf ../archive/`archive-date`"
+	csh -cf "mkdir ../archive/`archive-date`"
+	csh -cf "cp ../README ../archive/`archive-date`/."
+	csh -cf "cp makefile ../archive/`archive-date`/."
+	csh -cf "cp minimal-project-makefile ../archive/`archive-date`/."
+	csh -cf "cp *.{sc,sch,load,c,h} ../archive/`archive-date`/."
+	csh -cf "cp ../documentation/*.{sc,text} ../archive/`archive-date`/."
+
+clean:
+	-rm -f *.o core a.out
+
+real-clean: clean
+	-rm -f body qsci sch *.a
+
+install: QobiScheme.a QobiScheme-AD.a body qsci sch
+	cp QobiScheme.load $(INSTALLINCLUDE)/.
+	cp QobiScheme.sch QobiScheme-AD.sch xlib.sch $(INSTALLINCLUDE)/.
+	cp QobiScheme.a $(INSTALLLIBA)/.
+	cp QobiScheme-AD.a $(INSTALLLIBA)/.
+	cp body qsci sch $(INSTALLBINA)/.
+	cp ../minimal-project-makefile $(INSTALLINCLUDE)/.
+	cp ../minimal-projectlib-component.sc $(INSTALLINCLUDE)/.
+	cp ../minimal-application.sc $(INSTALLINCLUDE)/.
+	cp ../make-project $(INSTALLBIN)/.
+	$(RANLIB) $(INSTALLLIBA)/QobiScheme.a
+	$(RANLIB) $(INSTALLLIBA)/QobiScheme-AD.a
+
+uninstall:
+	rm -rf $(INSTALLINCLUDE)/QobiScheme.load
+	rm -rf $(INSTALLINCLUDE)/QobiScheme.sch
+	rm -rf $(INSTALLINCLUDE)/QobiScheme-AD.sch
+	rm -rf $(INSTALLINCLUDE)/xlib.sch
+	rm -rf $(INSTALLLIBA)/QobiScheme.a
+	rm -rf $(INSTALLLIBA)/QobiScheme-AD.a
+	rm -rf $(INSTALLBINA)/body
+	rm -rf $(INSTALLBINA)/qsci
+	rm -rf $(INSTALLBINA)/sch
+	rm -rf $(INSTALLINCLUDE)/minimal-project-makefile
+	rm -rf $(INSTALLINCLUDE)/minimal-projectlib-component.sc
+	rm -rf $(INSTALLINCLUDE)/minimal-application.sc
+	rm -rf $(INSTALLBIN)/make-project
+
+release:
+	-rm -rf $(RELEASE_FILE) $(RELEASE_FILE).tar*
+	mkdir $(RELEASE_FILE)
+	mkdir $(RELEASE_FILE)/source
+	mkdir $(RELEASE_FILE)/documentation
+	cp ../README $(RELEASE_FILE)/.
+	cp QobiScheme.sc $(RELEASE_FILE)/source/.
+	cp QobiScheme-AD.sc $(RELEASE_FILE)/source/.
+	cp QobiScheme.sch $(RELEASE_FILE)/source/.
+	cp QobiScheme-AD.sch $(RELEASE_FILE)/source/.
+	cp QobiScheme.load $(RELEASE_FILE)/source/.
+	cp body.sc $(RELEASE_FILE)/source/.
+	cp ../documentation/define-application-example.sc $(RELEASE_FILE)/documentation/.
+	cp ../documentation/define-command.text $(RELEASE_FILE)/documentation/.
+	cp makefile $(RELEASE_FILE)/source/.
+	cp usleep.c $(RELEASE_FILE)/source/.
+	cp nobuff.c $(RELEASE_FILE)/source/.
+	cp xflush.c $(RELEASE_FILE)/source/.
+	cp os_dep.c $(RELEASE_FILE)/source/.
+	cp dither.c $(RELEASE_FILE)/source/.
+	cp util.c $(RELEASE_FILE)/source/.
+	cp video.c $(RELEASE_FILE)/source/.
+	cp parseblock.c $(RELEASE_FILE)/source/.
+	cp motionvector.c $(RELEASE_FILE)/source/.
+	cp decoders.c $(RELEASE_FILE)/source/.
+	cp play_api.c $(RELEASE_FILE)/source/.
+	cp gdith.c $(RELEASE_FILE)/source/.
+	cp fs2.c $(RELEASE_FILE)/source/.
+	cp fs2fast.c $(RELEASE_FILE)/source/.
+	cp fs4.c $(RELEASE_FILE)/source/.
+	cp hybrid.c $(RELEASE_FILE)/source/.
+	cp hybriderr.c $(RELEASE_FILE)/source/.
+	cp 2x2.c $(RELEASE_FILE)/source/.
+	cp gray.c $(RELEASE_FILE)/source/.
+	cp mono.c $(RELEASE_FILE)/source/.
+	cp play_jrevdct.c $(RELEASE_FILE)/source/.
+	cp 16bit.c $(RELEASE_FILE)/source/.
+	cp util32.c $(RELEASE_FILE)/source/.
+	cp ordered.c $(RELEASE_FILE)/source/.
+	cp ordered2.c $(RELEASE_FILE)/source/.
+	cp mb_ordered.c $(RELEASE_FILE)/source/.
+	cp readfile.c $(RELEASE_FILE)/source/.
+	cp floatdct.c $(RELEASE_FILE)/source/.
+	cp ctrlbar.c $(RELEASE_FILE)/source/.
+	cp mfwddct.c $(RELEASE_FILE)/source/.
+	cp postdct.c $(RELEASE_FILE)/source/.
+	cp huff.c $(RELEASE_FILE)/source/.
+	cp bitio.c $(RELEASE_FILE)/source/.
+	cp mheaders.c $(RELEASE_FILE)/source/.
+	cp mpeg.c $(RELEASE_FILE)/source/.
+	cp subsample.c $(RELEASE_FILE)/source/.
+	cp param.c $(RELEASE_FILE)/source/.
+	cp rgbtoycc.c $(RELEASE_FILE)/source/.
+	cp readframe.c $(RELEASE_FILE)/source/.
+	cp combine.c $(RELEASE_FILE)/source/.
+	cp encode_jrevdct.c $(RELEASE_FILE)/source/.
+	cp frame.c $(RELEASE_FILE)/source/.
+	cp fsize.c $(RELEASE_FILE)/source/.
+	cp frametype.c $(RELEASE_FILE)/source/.
+	cp libpnmrw.c $(RELEASE_FILE)/source/.
+	cp specifics.c $(RELEASE_FILE)/source/.
+	cp rate.c $(RELEASE_FILE)/source/.
+	cp opts.c $(RELEASE_FILE)/source/.
+	cp iframe.c $(RELEASE_FILE)/source/.
+	cp pframe.c $(RELEASE_FILE)/source/.
+	cp bframe.c $(RELEASE_FILE)/source/.
+	cp psearch.c $(RELEASE_FILE)/source/.
+	cp bsearch.c $(RELEASE_FILE)/source/.
+	cp block.c $(RELEASE_FILE)/source/.
+	cp noparallel.c $(RELEASE_FILE)/source/.
+	cp nojpeg.c $(RELEASE_FILE)/source/.
+	cp encode_api.c $(RELEASE_FILE)/source/.
+	cp all.h $(RELEASE_FILE)/source/.
+	cp ansi.h $(RELEASE_FILE)/source/.
+	cp bitio.h $(RELEASE_FILE)/source/.
+	cp byteorder.h $(RELEASE_FILE)/source/.
+	cp combine.h $(RELEASE_FILE)/source/.
+	cp ctrlbar.h $(RELEASE_FILE)/source/.
+	cp dct.h $(RELEASE_FILE)/source/.
+	cp decoders.h $(RELEASE_FILE)/source/.
+	cp dither.h $(RELEASE_FILE)/source/.
+	cp frame.h $(RELEASE_FILE)/source/.
+	cp frames.h $(RELEASE_FILE)/source/.
+	cp fs2.h $(RELEASE_FILE)/source/.
+	cp fs4.h $(RELEASE_FILE)/source/.
+	cp fsize.h $(RELEASE_FILE)/source/.
+	cp general.h $(RELEASE_FILE)/source/.
+	cp huff.h $(RELEASE_FILE)/source/.
+	cp jpeg.h $(RELEASE_FILE)/source/.
+	cp libpnmrw.h $(RELEASE_FILE)/source/.
+	cp mheaders.h $(RELEASE_FILE)/source/.
+	cp mpeg.h $(RELEASE_FILE)/source/.
+	cp mproto.h $(RELEASE_FILE)/source/.
+	cp mtypes.h $(RELEASE_FILE)/source/.
+	cp opts.h $(RELEASE_FILE)/source/.
+	cp parallel.h $(RELEASE_FILE)/source/.
+	cp param.h $(RELEASE_FILE)/source/.
+	cp postdct.h $(RELEASE_FILE)/source/.
+	cp proto.h $(RELEASE_FILE)/source/.
+	cp prototypes.h $(RELEASE_FILE)/source/.
+	cp rate.h $(RELEASE_FILE)/source/.
+	cp readframe.h $(RELEASE_FILE)/source/.
+	cp rgbtoycc.h $(RELEASE_FILE)/source/.
+	cp search.h $(RELEASE_FILE)/source/.
+	cp specifics.h $(RELEASE_FILE)/source/.
+	cp util.h $(RELEASE_FILE)/source/.
+	cp video.h $(RELEASE_FILE)/source/.
+	cp qsci.sc $(RELEASE_FILE)/source/.
+	cp sch.sc $(RELEASE_FILE)/source/.
+	cp xlib.sch $(RELEASE_FILE)/source/.
+	cp jcapimin.c $(RELEASE_FILE)/source/.
+	cp jcapistd.c $(RELEASE_FILE)/source/.
+	cp jccoefct.c $(RELEASE_FILE)/source/.
+	cp jccolor.c $(RELEASE_FILE)/source/.
+	cp jcdctmgr.c $(RELEASE_FILE)/source/.
+	cp jchuff.c $(RELEASE_FILE)/source/.
+	cp jcinit.c $(RELEASE_FILE)/source/.
+	cp jcmainct.c $(RELEASE_FILE)/source/.
+	cp jcmarker.c $(RELEASE_FILE)/source/.
+	cp jcmaster.c $(RELEASE_FILE)/source/.
+	cp jcomapi.c $(RELEASE_FILE)/source/.
+	cp jcparam.c $(RELEASE_FILE)/source/.
+	cp jcphuff.c $(RELEASE_FILE)/source/.
+	cp jcprepct.c $(RELEASE_FILE)/source/.
+	cp jcsample.c $(RELEASE_FILE)/source/.
+	cp jctrans.c $(RELEASE_FILE)/source/.
+	cp jdapimin.c $(RELEASE_FILE)/source/.
+	cp jdapistd.c $(RELEASE_FILE)/source/.
+	cp jdatadst.c $(RELEASE_FILE)/source/.
+	cp jdatasrc.c $(RELEASE_FILE)/source/.
+	cp jdcoefct.c $(RELEASE_FILE)/source/.
+	cp jdcolor.c $(RELEASE_FILE)/source/.
+	cp jddctmgr.c $(RELEASE_FILE)/source/.
+	cp jdhuff.c $(RELEASE_FILE)/source/.
+	cp jdinput.c $(RELEASE_FILE)/source/.
+	cp jdmainct.c $(RELEASE_FILE)/source/.
+	cp jdmarker.c $(RELEASE_FILE)/source/.
+	cp jdmaster.c $(RELEASE_FILE)/source/.
+	cp jdmerge.c $(RELEASE_FILE)/source/.
+	cp jdphuff.c $(RELEASE_FILE)/source/.
+	cp jdpostct.c $(RELEASE_FILE)/source/.
+	cp jdsample.c $(RELEASE_FILE)/source/.
+	cp jdtrans.c $(RELEASE_FILE)/source/.
+	cp jerror.c $(RELEASE_FILE)/source/.
+	cp jfdctflt.c $(RELEASE_FILE)/source/.
+	cp jfdctfst.c $(RELEASE_FILE)/source/.
+	cp jfdctint.c $(RELEASE_FILE)/source/.
+	cp jidctflt.c $(RELEASE_FILE)/source/.
+	cp jidctfst.c $(RELEASE_FILE)/source/.
+	cp jidctint.c $(RELEASE_FILE)/source/.
+	cp jidctred.c $(RELEASE_FILE)/source/.
+	cp jquant1.c $(RELEASE_FILE)/source/.
+	cp jquant2.c $(RELEASE_FILE)/source/.
+	cp jutils.c $(RELEASE_FILE)/source/.
+	cp jmemmgr.c $(RELEASE_FILE)/source/.
+	cp jmemansi.c $(RELEASE_FILE)/source/.
+	cp jmemname.c $(RELEASE_FILE)/source/.
+	cp jmemnobs.c $(RELEASE_FILE)/source/.
+	cp jmemdos.c $(RELEASE_FILE)/source/.
+	cp cjpeg.c $(RELEASE_FILE)/source/.
+	cp djpeg.c $(RELEASE_FILE)/source/.
+	cp jpegtran.c $(RELEASE_FILE)/source/.
+	cp cdjpeg.c $(RELEASE_FILE)/source/.
+	cp rdcolmap.c $(RELEASE_FILE)/source/.
+	cp rdswitch.c $(RELEASE_FILE)/source/.
+	cp rdjpgcom.c $(RELEASE_FILE)/source/.
+	cp wrjpgcom.c $(RELEASE_FILE)/source/.
+	cp rdppm.c $(RELEASE_FILE)/source/.
+	cp wrppm.c $(RELEASE_FILE)/source/.
+	cp rdgif.c $(RELEASE_FILE)/source/.
+	cp wrgif.c $(RELEASE_FILE)/source/.
+	cp rdtarga.c $(RELEASE_FILE)/source/.
+	cp wrtarga.c $(RELEASE_FILE)/source/.
+	cp rdbmp.c $(RELEASE_FILE)/source/.
+	cp wrbmp.c $(RELEASE_FILE)/source/.
+	cp rdrle.c $(RELEASE_FILE)/source/.
+	cp wrrle.c $(RELEASE_FILE)/source/.
+	cp cderror.h $(RELEASE_FILE)/source/.
+	cp jdct.h $(RELEASE_FILE)/source/.
+	cp jmemsys.h $(RELEASE_FILE)/source/.
+	cp jversion.h $(RELEASE_FILE)/source/.
+	cp cdjpeg.h $(RELEASE_FILE)/source/.
+	cp jdhuff.h $(RELEASE_FILE)/source/.
+	cp jmorecfg.h $(RELEASE_FILE)/source/.
+	cp jchuff.h $(RELEASE_FILE)/source/.
+	cp jerror.h $(RELEASE_FILE)/source/.
+	cp jpegint.h $(RELEASE_FILE)/source/.
+	cp jconfig.h $(RELEASE_FILE)/source/.
+	cp jinclude.h $(RELEASE_FILE)/source/.
+	cp jpeglib.h $(RELEASE_FILE)/source/.
+	cp minimal-project-makefile $(RELEASE_FILE)/source/.
+	cp minimal-projectlib-component.sc $(RELEASE_FILE)/source/.
+	cp minimal-application.sc $(RELEASE_FILE)/source/.
+	cp make-project $(RELEASE_FILE)/source/.
+	tar cvf $(RELEASE_FILE).tar ./$(RELEASE_FILE)
+	compress $(RELEASE_FILE).tar
+	-rm -rf $(RELEASE_FILE)
+	mv $(RELEASE_FILE).tar.Z ../releases/.
+
+publish: release
+	cd ..; publish QobiScheme $(RELEASE_VERSION)
+
+# Compilation rules and dependencies
+# ----------------------------------
+INCLUDES=\
+	-I $(SCXL)
+
+
+body: body.sc
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -o body body.sc
+	-rm -f body.c
+
+QobiScheme.o: QobiScheme.sc xlib.sch
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c QobiScheme.sc
+	-rm -f QobiScheme.c
+
+QobiScheme-AD.o: QobiScheme-AD.sc xlib.sch
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c QobiScheme-AD.sc
+	-rm -f QobiScheme-AD.c
+
+usleep.o: usleep.c
+	$(CC) $(CFLAGS) -c usleep.c
+
+nobuff.o: nobuff.c
+	$(CC) $(CFLAGS) -c nobuff.c
+
+xflush.o: xflush.c
+	$(CC) $(CFLAGS) -c xflush.c
+
+os_dep.o: os_dep.c
+	$(CC) $(CFLAGS) -c os_dep.c
+
+dither.o: dither.c
+	$(CC) $(CFLAGS) -c dither.c
+
+util.o: video.h proto.h util.h ctrlbar.h
+	$(CC) $(PLAYCFLAGS) -c util.c
+
+video.o: ctrlbar.h decoders.h video.h util.h proto.h
+	$(CC) $(PLAYCFLAGS) -c video.c
+
+parseblock.o: video.h proto.h decoders.h
+	$(CC) $(PLAYCFLAGS) -c parseblock.c
+
+motionvector.o: video.h proto.h util.h
+	$(CC) $(PLAYCFLAGS) -c motionvector.c
+
+decoders.o: decoders.h util.h video.h proto.h
+	$(CC) $(PLAYCFLAGS) -c decoders.c
+
+play_api.o: video.h proto.h ctrlbar.h util.h dither.h
+	$(CC) $(PLAYCFLAGS) -c play_api.c
+
+gdith.o: video.h proto.h dither.h ctrlbar.h
+	$(CC) $(PLAYCFLAGS) -c gdith.c
+
+fs2.o: video.h dither.h fs2.h proto.h
+	$(CC) $(PLAYCFLAGS) -c fs2.c
+
+fs2fast.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c fs2fast.c
+
+fs4.o: fs4.h video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c fs4.c
+
+hybrid.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c hybrid.c
+
+hybriderr.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c hybriderr.c
+
+2x2.o: video.h dither.h proto.h
+	$(CC) $(PLAYCFLAGS) -c 2x2.c
+
+gray.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c gray.c
+
+mono.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c mono.c
+
+play_jrevdct.o: video.h proto.h
+	$(CC) $(PLAYCFLAGS) -c play_jrevdct.c
+
+16bit.o: video.h dither.h proto.h
+	$(CC) $(PLAYCFLAGS) -c 16bit.c
+
+util32.o: video.h proto.h
+	$(CC) $(PLAYCFLAGS) -c util32.c
+
+ordered.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c ordered.c
+
+ordered2.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c ordered2.c
+
+mb_ordered.o: video.h proto.h dither.h
+	$(CC) $(PLAYCFLAGS) -c mb_ordered.c
+
+readfile.o: video.h proto.h util.h dither.h
+	$(CC) $(PLAYCFLAGS) -c readfile.c
+
+floatdct.o:
+	$(CC) $(PLAYCFLAGS) -c floatdct.c
+
+ctrlbar.o: dither.h video.h ctrlbar.h proto.h
+	$(CC) $(PLAYCFLAGS) -c ctrlbar.c
+
+mfwddct.o: all.h dct.h mtypes.h opts.h
+	$(CC) $(ENCODECFLAGS) -c mfwddct.c
+
+postdct.o: all.h mtypes.h bitio.h huff.h postdct.h opts.h
+	$(CC) $(ENCODECFLAGS) -c postdct.c
+
+huff.o: mtypes.h huff.h
+	$(CC) $(ENCODECFLAGS) -c huff.c
+
+bitio.o: all.h byteorder.h bitio.h mtypes.h
+	$(CC) $(ENCODECFLAGS) -c bitio.c
+
+mheaders.o: all.h bitio.h frames.h mheaders.h
+	$(CC) $(ENCODECFLAGS) -c mheaders.c
+
+mpeg.o: all.h mtypes.h frames.h search.h mpeg.h prototypes.h parallel.h \
+param.h readframe.h fsize.h mheaders.h rate.h
+	$(CC) $(ENCODECFLAGS) -c mpeg.c
+
+subsample.o: all.h mtypes.h frames.h bitio.h prototypes.h
+	$(CC) $(ENCODECFLAGS) -c subsample.c
+
+param.o: all.h mtypes.h mpeg.h search.h prototypes.h parallel.h param.h \
+readframe.h fsize.h frames.h jpeg.h rate.h opts.h
+	$(CC) $(ENCODECFLAGS) -c param.c
+
+rgbtoycc.o: all.h frame.h fsize.h rgbtoycc.h
+	$(CC) $(ENCODECFLAGS) -c rgbtoycc.c
+
+readframe.o: all.h mtypes.h frames.h prototypes.h parallel.h param.h \
+readframe.h fsize.h rgbtoycc.h jpeg.h opts.h
+	$(CC) $(ENCODECFLAGS) -c readframe.c
+
+combine.o: all.h mtypes.h frames.h search.h mpeg.h prototypes.h parallel.h \
+param.h readframe.h mheaders.h fsize.h combine.h
+	$(CC) $(ENCODECFLAGS) -c combine.c
+
+encode_jrevdct.o: all.h ansi.h dct.h
+	$(CC) $(ENCODECFLAGS) -c encode_jrevdct.c
+
+frame.o: all.h mtypes.h frames.h frame.h fsize.h dct.h
+	$(CC) $(ENCODECFLAGS) -c frame.c
+
+fsize.o: all.h fsize.h dct.h
+	$(CC) $(ENCODECFLAGS) -c fsize.c
+
+frametype.o: all.h prototypes.h frames.h frame.h param.h
+	$(CC) $(ENCODECFLAGS) -c frametype.c
+
+libpnmrw.o: libpnmrw.h
+	$(CC) $(ENCODECFLAGS) -c libpnmrw.c
+
+specifics.o: all.h mtypes.h frames.h frame.h dct.h specifics.h prototypes.h
+	$(CC) $(ENCODECFLAGS) -c specifics.c
+
+rate.o: all.h mtypes.h bitio.h frames.h prototypes.h param.h mheaders.h \
+fsize.h postdct.h mpeg.h parallel.h dct.h rate.h
+	$(CC) $(ENCODECFLAGS) -c rate.c
+
+opts.o: opts.h
+	$(CC) $(ENCODECFLAGS) -c opts.c
+
+iframe.o: all.h mtypes.h frames.h prototypes.h mpeg.h param.h mheaders.h \
+fsize.h parallel.h postdct.h rate.h opts.h
+	$(CC) $(ENCODECFLAGS) -c iframe.c
+
+pframe.o: all.h mtypes.h bitio.h frames.h prototypes.h param.h mheaders.h \
+fsize.h postdct.h mpeg.h parallel.h rate.h opts.h
+	$(CC) $(ENCODECFLAGS) -c pframe.c
+
+bframe.o: all.h mtypes.h bitio.h frames.h prototypes.h fsize.h param.h \
+mheaders.h postdct.h rate.h opts.h
+	$(CC) $(ENCODECFLAGS) -c bframe.c
+
+psearch.o: all.h mtypes.h frames.h search.h prototypes.h fsize.h param.h
+	$(CC) $(ENCODECFLAGS) -c psearch.c
+
+bsearch.o: all.h mtypes.h frames.h search.h fsize.h
+	$(CC) $(ENCODECFLAGS) -c bsearch.c
+
+block.o: all.h mtypes.h frames.h bitio.h prototypes.h fsize.h opts.h postdct.h
+	$(CC) $(ENCODECFLAGS) -c block.c
+
+noparallel.o: all.h mtypes.h parallel.h frame.h
+	$(CC) $(ENCODECFLAGS) -c noparallel.c
+
+nojpeg.o: all.h mtypes.h frames.h prototypes.h param.h readframe.h fsize.h \
+rgbtoycc.h jpeg.h
+	$(CC) $(ENCODECFLAGS) -c nojpeg.c
+
+encode_api.o: all.h mtypes.h mpeg.h search.h prototypes.h param.h parallel.h \
+readframe.h combine.h frames.h jpeg.h specifics.h opts.h
+	$(CC) $(ENCODECFLAGS) -c encode_api.c
+
+jcapimin.o: jcapimin.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcapimin.c
+
+jcapistd.o: jcapistd.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcapistd.c
+
+jccoefct.o: jccoefct.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jccoefct.c
+
+jccolor.o: jccolor.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jccolor.c
+
+jcdctmgr.o: jcdctmgr.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jcdctmgr.c
+
+jchuff.o: jchuff.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jchuff.h
+	$(CC) $(JPEGCFLAGS) -c jchuff.c
+
+jcinit.o: jcinit.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcinit.c
+
+jcmainct.o: jcmainct.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcmainct.c
+
+jcmarker.o: jcmarker.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcmarker.c
+
+jcmaster.o: jcmaster.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcmaster.c
+
+jcomapi.o: jcomapi.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcomapi.c
+
+jcparam.o: jcparam.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcparam.c
+
+jcphuff.o: jcphuff.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jchuff.h
+	$(CC) $(JPEGCFLAGS) -c jcphuff.c
+
+jcprepct.o: jcprepct.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcprepct.c
+
+jcsample.o: jcsample.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jcsample.c
+
+jctrans.o: jctrans.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jctrans.c
+
+jdapimin.o: jdapimin.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdapimin.c
+
+jdapistd.o: jdapistd.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdapistd.c
+
+jdatadst.o: jdatadst.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdatadst.c
+
+jdatasrc.o: jdatasrc.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdatasrc.c
+
+jdcoefct.o: jdcoefct.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdcoefct.c
+
+jdcolor.o: jdcolor.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdcolor.c
+
+jddctmgr.o: jddctmgr.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jddctmgr.c
+
+jdhuff.o: jdhuff.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdhuff.h
+	$(CC) $(JPEGCFLAGS) -c jdhuff.c
+
+jdinput.o: jdinput.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdinput.c
+
+jdmainct.o: jdmainct.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdmainct.c
+
+jdmarker.o: jdmarker.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdmarker.c
+
+jdmaster.o: jdmaster.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdmaster.c
+
+jdmerge.o: jdmerge.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdmerge.c
+
+jdphuff.o: jdphuff.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdhuff.h
+	$(CC) $(JPEGCFLAGS) -c jdphuff.c
+
+jdpostct.o: jdpostct.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdpostct.c
+
+jdsample.o: jdsample.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdsample.c
+
+jdtrans.o: jdtrans.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jdtrans.c
+
+jerror.o: jerror.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jversion.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jerror.c
+
+jfdctflt.o: jfdctflt.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jfdctflt.c
+
+jfdctfst.o: jfdctfst.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jfdctfst.c
+
+jfdctint.o: jfdctint.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jfdctint.c
+
+jidctflt.o: jidctflt.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jidctflt.c
+
+jidctfst.o: jidctfst.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jidctfst.c
+
+jidctint.o: jidctint.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jidctint.c
+
+jidctred.o: jidctred.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jdct.h
+	$(CC) $(JPEGCFLAGS) -c jidctred.c
+
+jquant1.o: jquant1.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jquant1.c
+
+jquant2.o: jquant2.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h
+	$(CC) $(JPEGCFLAGS) -c jquant2.c
+
+jutils.o: jutils.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h jerror.h
+	$(CC) $(JPEGCFLAGS) -c jutils.c
+
+jmemmgr.o: jmemmgr.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jmemsys.h
+	$(CC) $(JPEGCFLAGS) -c jmemmgr.c
+
+jmemansi.o: jmemansi.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jmemsys.h
+	$(CC) $(JPEGCFLAGS) -c jmemansi.c
+
+jmemname.o: jmemname.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jmemsys.h
+	$(CC) $(JPEGCFLAGS) -c jmemname.c
+
+jmemnobs.o: jmemnobs.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jmemsys.h
+	$(CC) $(JPEGCFLAGS) -c jmemnobs.c
+
+jmemdos.o: jmemdos.c jinclude.h jconfig.h jpeglib.h jmorecfg.h jpegint.h \
+jerror.h jmemsys.h
+	$(CC) $(JPEGCFLAGS) -c jmemdos.c
+
+cjpeg.o: cjpeg.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h jversion.h
+	$(CC) $(JPEGCFLAGS) -c cjpeg.c
+
+djpeg.o: djpeg.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h jversion.h
+	$(CC) $(JPEGCFLAGS) -c djpeg.c
+
+jpegtran.o: jpegtran.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h \
+jerror.h cderror.h jversion.h
+	$(CC) $(JPEGCFLAGS) -c jpegtran.c
+
+cdjpeg.o: cdjpeg.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h \
+jerror.h cderror.h
+	$(CC) $(JPEGCFLAGS) -c cdjpeg.c
+
+rdcolmap.o: rdcolmap.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h \
+jerror.h cderror.h
+	$(CC) $(JPEGCFLAGS) -c rdcolmap.c
+
+rdswitch.o: rdswitch.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h \
+jerror.h cderror.h
+	$(CC) $(JPEGCFLAGS) -c rdswitch.c
+
+rdjpgcom.o: rdjpgcom.c jinclude.h jconfig.h
+	$(CC) $(JPEGCFLAGS) -c rdjpgcom.c
+
+wrjpgcom.o: wrjpgcom.c jinclude.h jconfig.h
+	$(CC) $(JPEGCFLAGS) -c wrjpgcom.c
+
+rdppm.o: rdppm.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c rdppm.c
+
+wrppm.o: wrppm.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c wrppm.c
+
+rdgif.o: rdgif.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c rdgif.c
+
+wrgif.o: wrgif.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c wrgif.c
+
+rdtarga.o: rdtarga.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h \
+jerror.h cderror.h
+	$(CC) $(JPEGCFLAGS) -c rdtarga.c
+
+wrtarga.o: wrtarga.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h \
+jerror.h cderror.h
+	$(CC) $(JPEGCFLAGS) -c wrtarga.c
+
+rdbmp.o: rdbmp.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c rdbmp.c
+
+wrbmp.o: wrbmp.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c wrbmp.c
+
+rdrle.o: rdrle.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c rdrle.c
+
+wrrle.o: wrrle.c cdjpeg.h jinclude.h jconfig.h jpeglib.h jmorecfg.h jerror.h \
+cderror.h
+	$(CC) $(JPEGCFLAGS) -c wrrle.c
+
+QobiScheme.a: QobiScheme.a($(OBJECTS) $(USLEEP))
+
+QobiScheme-AD.a: QobiScheme-AD.a($(AD_OBJECTS) $(USLEEP))
+
+qsci.o: qsci.sc xlib.sch QobiScheme-AD.sch QobiScheme.load
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c qsci.sc
+	rm -f qsci.c
+
+qsci: qsci.o QobiScheme-AD.a
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
+
+sch.o: sch.sc xlib.sch QobiScheme.sch
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c sch.sc
+	rm -f sch.c
+
+sch: sch.o QobiScheme.a
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCLDFLAGS) -o sch sch.o $(LRL)
