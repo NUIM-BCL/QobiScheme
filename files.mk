@@ -1,23 +1,30 @@
 OBJECTS = \
 	source/QobiScheme.o \
-	$(COMMON_OBJECTS)
+	$(C-OBJECTS)
 
-AD_OBJECTS = \
+
+AD-OBJECTS = \
 	source/QobiScheme-AD.o \
-	$(COMMON-OBJECTS)
+	$(C-OBJECTS)
 
-COMMON_OBJECTS = \
+
+C-OBJECTS = \
 	source/jquant1.o \
 	source/jquant2.o \
-	source/jutils.o
+	source/jutils.o \
+	$(ENCODE-OBJECTS) \
+	$(PLAY-OBJECTS) \
+	$(JPEG-OBJECTS)
 
+
+ENCODECFLAGS = -I/usr/include -O2
 ENCODE-OBJECTS = \
 	source/bframe.o \
 	source/bitio.o \
 	source/block.o \
 	source/bsearch.o \
 	source/combine.o \
-	source/encode_api.o
+	source/encode_api.o \
 	source/encode_jrevdct.o \
 	source/frame.o \
 	source/frametype.o \
@@ -39,12 +46,14 @@ ENCODE-OBJECTS = \
 	source/readframe.o \
 	source/rgbtoycc.o \
 	source/specifics.o \
-	source/subsample.o \
+	source/subsample.o
 
+
+PLAYCFLAGS = -O2 -DNDEBUG -DNONANSI_INCLUDES -I/usr/include -I/usr/openwin/include
 PLAY-OBJECTS = \
 	source/16bit.o \
 	source/2x2.o \
-	source/ctrlbar.o
+	source/ctrlbar.o \
 	source/decoders.o \
 	source/floatdct.o \
 	source/fs2.o \
@@ -65,7 +74,7 @@ PLAY-OBJECTS = \
 	source/readfile.o \
 	source/util.o \
 	source/util32.o \
-	source/video.o \
+	source/video.o
 
 
 # this may contain files which are not *actually* meant to be built
@@ -76,7 +85,10 @@ VANILLA-OBJECTS = \
 	source/dither.o \
 	source/nobuff.o \
 	source/os_dep.o \
-	source/xflush.o \
+	source/xflush.o
+
+
+JPEGCFLAGS = -O2 -DINLINE_YES
 
 # this may contain files which are not *actually* meant to be built
 # based on the original list of object files in source/makefile; however,
@@ -126,7 +138,6 @@ JPEG-OBJECTS = \
 	source/jidctfst.o \
 	source/jidctint.o \
 	source/jidctred.o \
-	source/jmemdos.o \
 	source/jmemmgr.o \
 	source/jmemnobs.o \
 	source/jpegtran.o \
@@ -142,5 +153,8 @@ JPEG-OBJECTS = \
 	source/wrgif.o \
 	source/wrjpgcom.o \
 	source/wrppm.o \
-	source/wrrle.o
-	source/wrtarga.o \
+	source/wrrle.o \
+	source/wrtarga.o
+
+JPEG-DOS-OBJECTS = \
+	source/jmemdos.o
