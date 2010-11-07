@@ -286,7 +286,7 @@ INCLUDES=\
 	-I $(SCXL)
 
 
-body: body.sc
+body: source/body.sc
 	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -o body body.sc
 	-rm -f body.c
 
