@@ -15,6 +15,13 @@ AC_CHECK_PROG([SCH], [sch], [sch], [reject])
 # FIXME: Replace `main' with a function in `-lX11':
 AC_CHECK_LIB([X11], [XHostAddress])
 
+AC_ARG_WITH([scxl], [AS_HELP_STRING([--with-scxl], [use Scheme->C X11 libraries])], [], [with_scxl=/usr/lib/s2c])
+
+SCXL=
+AS_IF([test "x$with_scxl" != xno],
+        [AC_SUBST([SCXL], [$with_scxl])])
+
+
 # Checks for header files.
 AC_PATH_X
 AC_CHECK_HEADERS([fcntl.h limits.h malloc.h memory.h netinet/in.h stddef.h stdlib.h string.h strings.h sys/param.h sys/time.h unistd.h])

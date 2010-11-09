@@ -19,8 +19,9 @@ USLEEP =
 AR = @AR@ rc
 RANLIB = @RANLIB@
 SCCLDFLAGS =
-LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a -L/usr/openwin/lib -lX11
-ADLRL = QobiScheme-AD.a $(INSTALLLIBA)/scxl.a -L/usr/openwin/lib -lX11
+SCXL = @SCXL@
+LRL = QobiScheme.a $(SCXL)/scxl.a -L/usr/openwin/lib -lX11
+ADLRL = QobiScheme-AD.a $(SCXL)/scxl.a -L/usr/openwin/lib -lX11
 
 
 SCC = @SCC@
@@ -51,14 +52,14 @@ clean:
 	-rm -f *.o core a.out
 
 real-clean: clean
-	-rm -f body qsci sch *.a
+	-rm -f body qsci *.a
 
-install: QobiScheme.a QobiScheme-AD.a body qsci sch
+install: QobiScheme.a QobiScheme-AD.a body qsci
 	cp QobiScheme.load $(INSTALLINCLUDE)/.
 	cp QobiScheme.sch QobiScheme-AD.sch xlib.sch $(INSTALLINCLUDE)/.
 	cp QobiScheme.a $(INSTALLLIBA)/.
 	cp QobiScheme-AD.a $(INSTALLLIBA)/.
-	cp body qsci sch $(INSTALLBINA)/.
+	cp body qsci $(INSTALLBINA)/.
 	cp ../minimal-project-makefile $(INSTALLINCLUDE)/.
 	cp ../minimal-projectlib-component.sc $(INSTALLINCLUDE)/.
 	cp ../minimal-application.sc $(INSTALLINCLUDE)/.
@@ -75,7 +76,6 @@ uninstall:
 	rm -rf $(INSTALLLIBA)/QobiScheme-AD.a
 	rm -rf $(INSTALLBINA)/body
 	rm -rf $(INSTALLBINA)/qsci
-	rm -rf $(INSTALLBINA)/sch
 	rm -rf $(INSTALLINCLUDE)/minimal-project-makefile
 	rm -rf $(INSTALLINCLUDE)/minimal-projectlib-component.sc
 	rm -rf $(INSTALLINCLUDE)/minimal-application.sc
@@ -286,6 +286,7 @@ publish: release
 # Compilation rules and dependencies
 # ----------------------------------
 INCLUDES=\
+	-I source \
 	-I $(SCXL)
 
 
@@ -293,12 +294,12 @@ body: source/body.sc
 	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -o source/body source/body.sc
 	-rm -f source/body.c
 
-QobiScheme.o: QobiScheme.sc xlib.sch
-	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c QobiScheme.sc
+QobiScheme.o: source/QobiScheme.sc source/xlib.sch
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c source/QobiScheme.sc
 	-rm -f QobiScheme.c
 
-QobiScheme-AD.o: QobiScheme-AD.sc xlib.sch
-	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c QobiScheme-AD.sc
+QobiScheme-AD.o: source/QobiScheme-AD.sc source/xlib.sch
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c source/QobiScheme-AD.sc
 	-rm -f QobiScheme-AD.c
 
 
