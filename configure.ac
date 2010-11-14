@@ -1,3 +1,6 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
 AC_PREREQ([2.67])
 AC_INIT([QobiScheme],[1.44],[qobi@purdue.edu])
 AC_CANONICAL_TARGET
