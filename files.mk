@@ -9,12 +9,10 @@ AD-OBJECTS = \
 
 
 C-OBJECTS = \
-	source/jquant1.o \
-	source/jquant2.o \
-	source/jutils.o \
 	$(ENCODE-OBJECTS) \
+	$(JPEG-OBJECTS) \
 	$(PLAY-OBJECTS) \
-	$(JPEG-OBJECTS)
+	$(VANILLA-OBJECTS)
 
 
 ENCODECFLAGS = -I/usr/include -O2
@@ -81,7 +79,7 @@ PLAY-OBJECTS = \
 # based on the original list of object files in source/makefile; however,
 # there are rules to build all of these...
 VANILLA-OBJECTS = \
-	source/usleep.c \
+	$(USLEEP) \
 	source/dither.o \
 	source/nobuff.o \
 	source/os_dep.o \
@@ -141,6 +139,9 @@ JPEG-OBJECTS = \
 	source/jmemmgr.o \
 	source/jmemnobs.o \
 	source/jpegtran.o \
+	source/jquant1.o \
+	source/jquant2.o \
+	source/jutils.o \
 	source/rdbmp.o \
 	source/rdcolmap.o \
 	source/rdgif.o \

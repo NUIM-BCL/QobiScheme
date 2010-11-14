@@ -21,7 +21,7 @@ RANLIB = @RANLIB@
 SCCLDFLAGS =
 SCXL = @SCXL@
 LRL = QobiScheme.a $(SCXL)/scxl.a -L/usr/openwin/lib -lX11
-ADLRL = QobiScheme-AD.a $(SCXL)/scxl.a -L/usr/openwin/lib -lX11
+ADLRL = source/QobiScheme-AD.a $(SCXL)/scxl.a -L/usr/openwin/lib -lX11
 
 
 SCC = @SCC@
@@ -35,8 +35,9 @@ C-SRCS = $(C-OBJECTS:.o=.c)
 ENCODE-SRCS = $(ENCODE-OBJECTS:.o=.c)
 PLAY-SRCS = $(PLAY-OBJECTS:.o=.c)
 JPEG-SRCS = $(JPEG-OBJECTS:.o=.c)
+VANILLA-SRCS = $(VANILLA-SRCS:.o=.c)
 
-all: encode play jpeg body qsci sch
+all: encode play jpeg body vanilla source/qsci
 
 
 arc:
@@ -303,6 +304,13 @@ QobiScheme-AD.o: source/QobiScheme-AD.sc source/xlib.sch
 	-rm -f QobiScheme-AD.c
 
 
+source/QobiScheme.a: source/QobiScheme.a(QobiScheme.o $(C-OBJECTS) $(USLEEP))
+	$(AR) source/QobiScheme.a QobiScheme.o $(C-OBJECTS) $(USLEEP)
+
+source/QobiScheme-AD.a: source/QobiScheme-AD.a(QobiScheme-AD.o $(C-OBJECTS) $(USLEEP))
+	$(AR) source/QobiScheme-AD.a QobiScheme-AD.o $(C-OBJECTS) $(USLEEP)
+
+
 encode: $(ENCODE-SRCS)
 	$(MAKE) "CFLAGS=$(ENCODECFLAGS)" $(ENCODE-OBJECTS)
 
@@ -313,3 +321,14 @@ jpeg: $(JPEG-SRCS)
 
 play: $(PLAY-SRCS)
 	$(MAKE) "CFLAGS=$(PLAYCFLAGS)" $(PLAY-OBJECTS)
+
+
+vanilla: $(VANILLA-OBJECTS)
+
+source/qsci.o: source/qsci.sc source/QobiScheme-AD.sch source/QobiScheme.load
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c source/qsci.sc
+	rm -f qsci.c
+
+source/qsci: source/qsci.o source/QobiScheme-AD.a
+	$(SCC) $(INCLUDES) -cc $(CC) $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
+
