@@ -16,7 +16,7 @@ CC = @CC@
 CFLAGS = -O2
 SCCFLAGS = -O2
 USLEEP =
-AR = @AR@ rc
+#AR = @AR@
 RANLIB = @RANLIB@
 SCCLDFLAGS =
 SCXL = @SCXL@
@@ -305,10 +305,10 @@ QobiScheme-AD.o: source/QobiScheme-AD.sc source/xlib.sch
 
 
 source/QobiScheme.a: source/QobiScheme.a(QobiScheme.o $(C-OBJECTS) $(USLEEP))
-	$(AR) source/QobiScheme.a QobiScheme.o $(C-OBJECTS) $(USLEEP)
+#	$(AR) source/QobiScheme.a QobiScheme.o $(C-OBJECTS) $(USLEEP)
 
 source/QobiScheme-AD.a: source/QobiScheme-AD.a(QobiScheme-AD.o $(C-OBJECTS) $(USLEEP))
-	$(AR) source/QobiScheme-AD.a QobiScheme-AD.o $(C-OBJECTS) $(USLEEP)
+#	$(AR) source/QobiScheme-AD.a QobiScheme-AD.o $(C-OBJECTS) $(USLEEP)
 
 
 encode: $(ENCODE-SRCS)
