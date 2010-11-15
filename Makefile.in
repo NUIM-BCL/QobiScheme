@@ -17,7 +17,7 @@ CFLAGS = -O2
 SCCFLAGS += -O2
 SCCFLAGS += -sch 512
 USLEEP =
-#AR = @AR@
+AR = @AR@
 RANLIB = @RANLIB@
 SCCLDFLAGS =
 SCXL = @SCXL@
@@ -305,10 +305,19 @@ QobiScheme-AD.o: source/QobiScheme-AD.sc source/xlib.sch
 	-rm -f QobiScheme-AD.c
 
 
-source/QobiScheme.a: source/QobiScheme.a(QobiScheme.o $(C-OBJECTS) $(USLEEP))
+## Were these to be threadsafe they would be devoutly desired:
+# source/QobiScheme.a: source/QobiScheme.a(QobiScheme.o $(C-OBJECTS) $(USLEEP))
+# source/QobiScheme-AD.a: source/QobiScheme-AD.a(QobiScheme-AD.o $(C-OBJECTS) $(USLEEP))
+## But as they are not, we are reduced to the below horror:
+source/QobiScheme.a: QobiScheme.o $(C-OBJECTS) $(USLEEP)
+	-rm -f $@
+	$(AR) q $@ $^
+	$(RANLIB) $@
 
-source/QobiScheme-AD.a: source/QobiScheme-AD.a(QobiScheme-AD.o $(C-OBJECTS) $(USLEEP))
-
+source/QobiScheme-AD.a: QobiScheme-AD.o $(C-OBJECTS) $(USLEEP)
+	-rm -f $@
+	$(AR) q $@ $^
+	$(RANLIB) $@
 
 encode: $(ENCODE-SRCS)
 	$(MAKE) "CFLAGS=$(ENCODECFLAGS)" $(ENCODE-OBJECTS)
