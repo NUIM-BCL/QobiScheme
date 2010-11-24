@@ -38,7 +38,7 @@ PLAY-SRCS = $(PLAY-OBJECTS:.o=.c)
 JPEG-SRCS = $(JPEG-OBJECTS:.o=.c)
 VANILLA-SRCS = $(VANILLA-SRCS:.o=.c)
 
-all: encode play jpeg body vanilla source/QobiScheme.a source/QobiScheme-AD.a source/qsci 
+all: encode play jpeg source/body vanilla source/QobiScheme.a source/QobiScheme-AD.a qsci
 
 
 arc:
@@ -292,7 +292,7 @@ INCLUDES=\
 	-I $(SCXL)
 
 
-body: source/body.sc
+source/body: source/body.sc
 	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -o source/body source/body.sc
 	-rm -f source/body.c
 
@@ -333,10 +333,10 @@ play: $(PLAY-SRCS)
 
 vanilla: $(VANILLA-OBJECTS)
 
-source/qsci.o: source/qsci.sc source/QobiScheme-AD.sch source/QobiScheme.load
+qsci.o: source/qsci.sc source/QobiScheme-AD.sch source/QobiScheme.load
 	$(SCC) $(INCLUDES) -cc $(CC) $(SCCFLAGS) -c source/qsci.sc
 	rm -f qsci.c
 
-source/qsci: source/qsci.o source/QobiScheme-AD.a
+qsci: qsci.o source/QobiScheme-AD.a
 	$(SCC) $(INCLUDES) -cc $(CC) $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
 
