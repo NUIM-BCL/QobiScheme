@@ -340,5 +340,8 @@ qsci.o: source/qsci.sc source/QobiScheme-AD.sch source/QobiScheme.load
 qsci: qsci.o source/QobiScheme-AD.a
 	$(SCC) $(INCLUDES) -cc $(CC) $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
 
+Makefile: Makefile.in
+	cd .. && ./config.status
+
 .PHONY: all arc clean real-clean install uninstall release publish
 .PHONY: encode jpeg play
