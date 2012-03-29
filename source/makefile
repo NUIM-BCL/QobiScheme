@@ -1607,6 +1607,8 @@ error_no_error:
 
 SCC = s2cc
 
+SCCCC = $(CC) $(CFLAGS)
+
 OBJECTS = QobiScheme.o nobuff.o xflush.o os_dep.o dither.o \
 16bit.o gdith.o ordered.o 2x2.o gray.o ordered2.o ctrlbar.o hybrid.o \
 parseblock.o decoders.o hybriderr.o play_api.o floatdct.o play_jrevdct.o \
@@ -1887,15 +1889,15 @@ publish: release
 # Compilation rules and dependencies
 # ----------------------------------
 body: body.sc
-	$(SCC) -cc $(CC) $(SCCFLAGS) -o body body.sc
+	$(SCC) -cc "$(SCCCC)" $(SCCFLAGS) -o body body.sc
 	-rm -f body.c
 
 QobiScheme.o: QobiScheme.sc xlib.sch
-	$(SCC) -cc $(CC) $(SCCFLAGS) -c QobiScheme.sc
+	$(SCC) -cc "$(SCCCC)" $(SCCFLAGS) -c QobiScheme.sc
 	-rm -f QobiScheme.c
 
 QobiScheme-AD.o: QobiScheme-AD.sc xlib.sch
-	$(SCC) -cc $(CC) $(SCCFLAGS) -c QobiScheme-AD.sc
+	$(SCC) -cc "$(SCCCC)" $(SCCFLAGS) -c QobiScheme-AD.sc
 	-rm -f QobiScheme-AD.c
 
 usleep.o: usleep.c
@@ -2352,15 +2354,15 @@ QobiScheme-AD.a: $(AD_OBJECTS) usleep.o
 	$(RANLIB) QobiScheme-AD.a
 
 qsci.o: qsci.sc xlib.sch QobiScheme-AD.sch QobiScheme.load
-	$(SCC) -cc $(CC) $(SCCFLAGS) -c qsci.sc
+	$(SCC) -cc "$(SCCCC)" $(SCCFLAGS) -c qsci.sc
 	rm -f qsci.c
 
 qsci: qsci.o QobiScheme-AD.a
-	$(SCC) -cc $(CC) $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
+	$(SCC) -cc "$(SCCCC)" $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
 
 sch.o: sch.sc xlib.sch QobiScheme.sch
-	$(SCC) -cc $(CC) $(SCCFLAGS) -c sch.sc
+	$(SCC) -cc "$(SCCCC)" $(SCCFLAGS) -c sch.sc
 	rm -f sch.c
 
 sch: sch.o QobiScheme.a
-	$(SCC) -cc $(CC) $(SCCLDFLAGS) -o sch sch.o $(LRL)
+	$(SCC) -cc "$(SCCCC)" $(SCCLDFLAGS) -o sch sch.o $(LRL)
