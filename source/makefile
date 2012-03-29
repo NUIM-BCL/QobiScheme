@@ -54,7 +54,7 @@ error_no_error:
 #sun4-SunOS-4.1.3 ENCODECFLAGS = -I/usr/include -O2
 #sun4-SunOS-4.1.3 JPEGCFLAGS = -O2 -DINLINE_YES
 #sun4-SunOS-4.1.3 USLEEP =
-#sun4-SunOS-4.1.3 AR = ar rc
+#sun4-SunOS-4.1.3 AR = ar
 #sun4-SunOS-4.1.3 RANLIB = ranlib
 #sun4-SunOS-4.1.3 SCCLDFLAGS =
 #sun4-SunOS-4.1.3 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -70,7 +70,7 @@ error_no_error:
 #sun4m-SunOS-5.4 ENCODECFLAGS = -I/usr/include -O2
 #sun4m-SunOS-5.4 JPEGCFLAGS = -O2 -DINLINE_YES
 #sun4m-SunOS-5.4 USLEEP =
-#sun4m-SunOS-5.4 AR = ar rc
+#sun4m-SunOS-5.4 AR = ar
 #sun4m-SunOS-5.4 RANLIB = cat >/dev/null
 #sun4m-SunOS-5.4 SCCLDFLAGS =
 #sun4m-SunOS-5.4 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -88,7 +88,7 @@ error_no_error:
 #sun4m-SunOS-5.5 ENCODECFLAGS = -I/usr/include -O2
 #sun4m-SunOS-5.5 JPEGCFLAGS = -O2 -DINLINE_YES
 #sun4m-SunOS-5.5 USLEEP =
-#sun4m-SunOS-5.5 AR = ar rc
+#sun4m-SunOS-5.5 AR = ar
 #sun4m-SunOS-5.5 RANLIB = cat >/dev/null
 #sun4m-SunOS-5.5 SCCLDFLAGS =
 #sun4m-SunOS-5.5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -106,7 +106,7 @@ error_no_error:
 #sun4u-SunOS-5.6 ENCODECFLAGS = -I/usr/include -O2
 #sun4u-SunOS-5.6 JPEGCFLAGS = -O2 -DINLINE_YES
 #sun4u-SunOS-5.6 USLEEP =
-#sun4u-SunOS-5.6 AR = ar rc
+#sun4u-SunOS-5.6 AR = ar
 #sun4u-SunOS-5.6 RANLIB = cat >/dev/null
 #sun4u-SunOS-5.6 SCCLDFLAGS =
 #sun4u-SunOS-5.6 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -124,7 +124,7 @@ error_no_error:
 #sun4u-SunOS-5.8 ENCODECFLAGS = -I/usr/include -O2
 #sun4u-SunOS-5.8 JPEGCFLAGS = -O2 -DINLINE_YES
 #sun4u-SunOS-5.8 USLEEP =
-#sun4u-SunOS-5.8 AR = ar rc
+#sun4u-SunOS-5.8 AR = ar
 #sun4u-SunOS-5.8 RANLIB = cat >/dev/null
 #sun4u-SunOS-5.8 SCCLDFLAGS =
 #sun4u-SunOS-5.8 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -142,7 +142,7 @@ error_no_error:
 #sun4u-SunOS-5.10 ENCODECFLAGS = -I/usr/include -O2
 #sun4u-SunOS-5.10 JPEGCFLAGS = -O2 -DINLINE_YES
 #sun4u-SunOS-5.10 USLEEP =
-#sun4u-SunOS-5.10 AR = ar rc
+#sun4u-SunOS-5.10 AR = ar
 #sun4u-SunOS-5.10 RANLIB = cat >/dev/null
 #sun4u-SunOS-5.10 SCCLDFLAGS =
 #sun4u-SunOS-5.10 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -164,7 +164,7 @@ error_no_error:
 #i586-Linux-2.0.0                -DLONG_32 -DSYSV -DLINUX
 #i586-Linux-2.0.0 JPEGCFLAGS = -O2 -DINLINE_YES
 #i586-Linux-2.0.0 USLEEP =
-#i586-Linux-2.0.0 AR = ar rc
+#i586-Linux-2.0.0 AR = ar
 #i586-Linux-2.0.0 RANLIB = ranlib
 #i586-Linux-2.0.0 SCCLDFLAGS =
 #i586-Linux-2.0.0 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -184,7 +184,7 @@ error_no_error:
 #i586-Linux-2.0.34                -DLONG_32 -DSYSV -DLINUX
 #i586-Linux-2.0.34 JPEGCFLAGS = -O2 -DINLINE_YES
 #i586-Linux-2.0.34 USLEEP =
-#i586-Linux-2.0.34 AR = ar rc
+#i586-Linux-2.0.34 AR = ar
 #i586-Linux-2.0.34 RANLIB = ranlib
 #i586-Linux-2.0.34 SCCLDFLAGS =
 #i586-Linux-2.0.34 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -204,7 +204,7 @@ error_no_error:
 #i586-Linux-2.0.35                -DLONG_32 -DSYSV -DLINUX
 #i586-Linux-2.0.35 JPEGCFLAGS = -O2 -DINLINE_YES
 #i586-Linux-2.0.35 USLEEP =
-#i586-Linux-2.0.35 AR = ar rc
+#i586-Linux-2.0.35 AR = ar
 #i586-Linux-2.0.35 RANLIB = ranlib
 #i586-Linux-2.0.35 SCCLDFLAGS =
 #i586-Linux-2.0.35 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -224,7 +224,7 @@ error_no_error:
 #i686-Linux-2.0.18                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.0.18 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.0.18 USLEEP =
-#i686-Linux-2.0.18 AR = ar rc
+#i686-Linux-2.0.18 AR = ar
 #i686-Linux-2.0.18 RANLIB = ranlib
 #i686-Linux-2.0.18 SCCLDFLAGS =
 #i686-Linux-2.0.18 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -244,7 +244,7 @@ error_no_error:
 #i686-Linux-2.0.27                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.0.27 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.0.27 USLEEP =
-#i686-Linux-2.0.27 AR = ar rc
+#i686-Linux-2.0.27 AR = ar
 #i686-Linux-2.0.27 RANLIB = ranlib
 #i686-Linux-2.0.27 SCCLDFLAGS =
 #i686-Linux-2.0.27 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -264,7 +264,7 @@ error_no_error:
 #i686-Linux-2.0.30                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.0.30 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.0.30 USLEEP =
-#i686-Linux-2.0.30 AR = ar rc
+#i686-Linux-2.0.30 AR = ar
 #i686-Linux-2.0.30 RANLIB = ranlib
 #i686-Linux-2.0.30 SCCLDFLAGS =
 #i686-Linux-2.0.30 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -284,7 +284,7 @@ error_no_error:
 #i686-Linux-2.0.32                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.0.32 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.0.32 USLEEP =
-#i686-Linux-2.0.32 AR = ar rc
+#i686-Linux-2.0.32 AR = ar
 #i686-Linux-2.0.32 RANLIB = ranlib
 #i686-Linux-2.0.32 SCCLDFLAGS =
 #i686-Linux-2.0.32 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -304,7 +304,7 @@ error_no_error:
 #i686-Linux-2.0.33                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.0.33 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.0.33 USLEEP =
-#i686-Linux-2.0.33 AR = ar rc
+#i686-Linux-2.0.33 AR = ar
 #i686-Linux-2.0.33 RANLIB = ranlib
 #i686-Linux-2.0.33 SCCLDFLAGS =
 #i686-Linux-2.0.33 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -324,7 +324,7 @@ error_no_error:
 #i686-Linux-2.0.34                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.0.34 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.0.34 USLEEP =
-#i686-Linux-2.0.34 AR = ar rc
+#i686-Linux-2.0.34 AR = ar
 #i686-Linux-2.0.34 RANLIB = ranlib
 #i686-Linux-2.0.34 SCCLDFLAGS =
 #i686-Linux-2.0.34 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -344,7 +344,7 @@ error_no_error:
 #i686-Linux-2.0.35                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.0.35 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.0.35 USLEEP =
-#i686-Linux-2.0.35 AR = ar rc
+#i686-Linux-2.0.35 AR = ar
 #i686-Linux-2.0.35 RANLIB = ranlib
 #i686-Linux-2.0.35 SCCLDFLAGS =
 #i686-Linux-2.0.35 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -364,7 +364,7 @@ error_no_error:
 #i686-Linux-2.2.1                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.2.1 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.2.1 USLEEP =
-#i686-Linux-2.2.1 AR = ar rc
+#i686-Linux-2.2.1 AR = ar
 #i686-Linux-2.2.1 RANLIB = ranlib
 #i686-Linux-2.2.1 SCCLDFLAGS =
 #i686-Linux-2.2.1 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -384,7 +384,7 @@ error_no_error:
 #i686-Linux-2.2.5                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.2.5 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.2.5 USLEEP =
-#i686-Linux-2.2.5 AR = ar rc
+#i686-Linux-2.2.5 AR = ar
 #i686-Linux-2.2.5 RANLIB = ranlib
 #i686-Linux-2.2.5 SCCLDFLAGS =
 #i686-Linux-2.2.5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -404,7 +404,7 @@ error_no_error:
 #i686-Linux-2.2.5-15                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.2.5-15 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.2.5-15 USLEEP =
-#i686-Linux-2.2.5-15 AR = ar rc
+#i686-Linux-2.2.5-15 AR = ar
 #i686-Linux-2.2.5-15 RANLIB = ranlib
 #i686-Linux-2.2.5-15 SCCLDFLAGS =
 #i686-Linux-2.2.5-15 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -424,7 +424,7 @@ error_no_error:
 #i686-Linux-2.2.10                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.2.10 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.2.10 USLEEP =
-#i686-Linux-2.2.10 AR = ar rc
+#i686-Linux-2.2.10 AR = ar
 #i686-Linux-2.2.10 RANLIB = ranlib
 #i686-Linux-2.2.10 SCCLDFLAGS =
 #i686-Linux-2.2.10 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -445,7 +445,7 @@ error_no_error:
 #i686-Linux-2.2.12-20                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.2.12-20 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.2.12-20 USLEEP =
-#i686-Linux-2.2.12-20 AR = ar rc
+#i686-Linux-2.2.12-20 AR = ar
 #i686-Linux-2.2.12-20 RANLIB = ranlib
 #i686-Linux-2.2.12-20 SCCLDFLAGS =
 #i686-Linux-2.2.12-20 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -466,7 +466,7 @@ error_no_error:
 #i686-Linux-2.2.12-20smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.2.12-20smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.2.12-20smp USLEEP =
-#i686-Linux-2.2.12-20smp AR = ar rc
+#i686-Linux-2.2.12-20smp AR = ar
 #i686-Linux-2.2.12-20smp RANLIB = ranlib
 #i686-Linux-2.2.12-20smp SCCLDFLAGS =
 #i686-Linux-2.2.12-20smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -487,7 +487,7 @@ error_no_error:
 #i686-Linux-2.3.42                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.3.42 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.3.42 USLEEP =
-#i686-Linux-2.3.42 AR = ar rc
+#i686-Linux-2.3.42 AR = ar
 #i686-Linux-2.3.42 RANLIB = ranlib
 #i686-Linux-2.3.42 SCCLDFLAGS =
 #i686-Linux-2.3.42 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -508,7 +508,7 @@ error_no_error:
 #i686-Linux-2.4.2-2                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.2-2 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.2-2 USLEEP =
-#i686-Linux-2.4.2-2 AR = ar rc
+#i686-Linux-2.4.2-2 AR = ar
 #i686-Linux-2.4.2-2 RANLIB = ranlib
 #i686-Linux-2.4.2-2 SCCLDFLAGS =
 #i686-Linux-2.4.2-2 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -529,7 +529,7 @@ error_no_error:
 #i686-Linux-2.4.2-2smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.2-2smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.2-2smp USLEEP =
-#i686-Linux-2.4.2-2smp AR = ar rc
+#i686-Linux-2.4.2-2smp AR = ar
 #i686-Linux-2.4.2-2smp RANLIB = ranlib
 #i686-Linux-2.4.2-2smp SCCLDFLAGS =
 #i686-Linux-2.4.2-2smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -550,7 +550,7 @@ error_no_error:
 #i686-Linux-2.4.7                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.7 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.7 USLEEP =
-#i686-Linux-2.4.7 AR = ar rc
+#i686-Linux-2.4.7 AR = ar
 #i686-Linux-2.4.7 RANLIB = ranlib
 #i686-Linux-2.4.7 SCCLDFLAGS =
 #i686-Linux-2.4.7 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -571,7 +571,7 @@ error_no_error:
 #i686-Linux-2.4.7-10                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.7-10 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.7-10 USLEEP =
-#i686-Linux-2.4.7-10 AR = ar rc
+#i686-Linux-2.4.7-10 AR = ar
 #i686-Linux-2.4.7-10 RANLIB = ranlib
 #i686-Linux-2.4.7-10 SCCLDFLAGS =
 #i686-Linux-2.4.7-10 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -592,7 +592,7 @@ error_no_error:
 #i686-Linux-2.4.7-10smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.7-10smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.7-10smp USLEEP =
-#i686-Linux-2.4.7-10smp AR = ar rc
+#i686-Linux-2.4.7-10smp AR = ar
 #i686-Linux-2.4.7-10smp RANLIB = ranlib
 #i686-Linux-2.4.7-10smp SCCLDFLAGS =
 #i686-Linux-2.4.7-10smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -613,7 +613,7 @@ error_no_error:
 #i686-Linux-2.4.9-13                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.9-13 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.9-13 USLEEP =
-#i686-Linux-2.4.9-13 AR = ar rc
+#i686-Linux-2.4.9-13 AR = ar
 #i686-Linux-2.4.9-13 RANLIB = ranlib
 #i686-Linux-2.4.9-13 SCCLDFLAGS =
 #i686-Linux-2.4.9-13 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -635,7 +635,7 @@ error_no_error:
 #i686-Linux-2.4.17-0.13ecn1                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.17-0.13ecn1 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.17-0.13ecn1 USLEEP =
-#i686-Linux-2.4.17-0.13ecn1 AR = ar rc
+#i686-Linux-2.4.17-0.13ecn1 AR = ar
 #i686-Linux-2.4.17-0.13ecn1 RANLIB = ranlib
 #i686-Linux-2.4.17-0.13ecn1 SCCLDFLAGS =
 #i686-Linux-2.4.17-0.13ecn1 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -656,7 +656,7 @@ error_no_error:
 #i686-Linux-2.4.18-4_72smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.18-4_72smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.18-4_72smp USLEEP =
-#i686-Linux-2.4.18-4_72smp AR = ar rc
+#i686-Linux-2.4.18-4_72smp AR = ar
 #i686-Linux-2.4.18-4_72smp RANLIB = ranlib
 #i686-Linux-2.4.18-4_72smp SCCLDFLAGS =
 #i686-Linux-2.4.18-4_72smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -678,7 +678,7 @@ error_no_error:
 #i686-Linux-2.4.18-19.7.x                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.18-19.7.x JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.18-19.7.x USLEEP =
-#i686-Linux-2.4.18-19.7.x AR = ar rc
+#i686-Linux-2.4.18-19.7.x AR = ar
 #i686-Linux-2.4.18-19.7.x RANLIB = ranlib
 #i686-Linux-2.4.18-19.7.x SCCLDFLAGS =
 #i686-Linux-2.4.18-19.7.x LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -700,7 +700,7 @@ error_no_error:
 #i686-Linux-2.4.18-24.7.x                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.18-24.7.x JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.18-24.7.x USLEEP =
-#i686-Linux-2.4.18-24.7.x AR = ar rc
+#i686-Linux-2.4.18-24.7.x AR = ar
 #i686-Linux-2.4.18-24.7.x RANLIB = ranlib
 #i686-Linux-2.4.18-24.7.x SCCLDFLAGS =
 #i686-Linux-2.4.18-24.7.x LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -721,7 +721,7 @@ error_no_error:
 #i686-Linux-2.4.20-9smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.20-9smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.20-9smp USLEEP =
-#i686-Linux-2.4.20-9smp AR = ar rc
+#i686-Linux-2.4.20-9smp AR = ar
 #i686-Linux-2.4.20-9smp RANLIB = ranlib
 #i686-Linux-2.4.20-9smp SCCLDFLAGS =
 #i686-Linux-2.4.20-9smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -742,7 +742,7 @@ error_no_error:
 #i686-Linux-2.4.21-32.0.1.ELsmp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.21-32.0.1.ELsmp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.21-32.0.1.ELsmp USLEEP =
-#i686-Linux-2.4.21-32.0.1.ELsmp AR = ar rc
+#i686-Linux-2.4.21-32.0.1.ELsmp AR = ar
 #i686-Linux-2.4.21-32.0.1.ELsmp RANLIB = ranlib
 #i686-Linux-2.4.21-32.0.1.ELsmp SCCLDFLAGS =
 #i686-Linux-2.4.21-32.0.1.ELsmp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -763,7 +763,7 @@ error_no_error:
 #i686-Linux-2.4.21-37.ELsmp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.21-37.ELsmp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.21-37.ELsmp USLEEP =
-#i686-Linux-2.4.21-37.ELsmp AR = ar rc
+#i686-Linux-2.4.21-37.ELsmp AR = ar
 #i686-Linux-2.4.21-37.ELsmp RANLIB = ranlib
 #i686-Linux-2.4.21-37.ELsmp SCCLDFLAGS =
 #i686-Linux-2.4.21-37.ELsmp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -784,7 +784,7 @@ error_no_error:
 #i686-Linux-2.4.21-47.ELsmp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.4.21-47.ELsmp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.4.21-47.ELsmp USLEEP =
-#i686-Linux-2.4.21-47.ELsmp AR = ar rc
+#i686-Linux-2.4.21-47.ELsmp AR = ar
 #i686-Linux-2.4.21-47.ELsmp RANLIB = ranlib
 #i686-Linux-2.4.21-47.ELsmp SCCLDFLAGS =
 #i686-Linux-2.4.21-47.ELsmp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -805,7 +805,7 @@ error_no_error:
 #i686-Linux-2.6.8.1                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.8.1 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.8.1 USLEEP =
-#i686-Linux-2.6.8.1 AR = ar rc
+#i686-Linux-2.6.8.1 AR = ar
 #i686-Linux-2.6.8.1 RANLIB = ranlib
 #i686-Linux-2.6.8.1 SCCLDFLAGS =
 #i686-Linux-2.6.8.1 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -826,7 +826,7 @@ error_no_error:
 #i686-Linux-2.6.11.11-laptop                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.11.11-laptop JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.11.11-laptop USLEEP =
-#i686-Linux-2.6.11.11-laptop AR = ar rc
+#i686-Linux-2.6.11.11-laptop AR = ar
 #i686-Linux-2.6.11.11-laptop RANLIB = ranlib
 #i686-Linux-2.6.11.11-laptop SCCLDFLAGS =
 #i686-Linux-2.6.11.11-laptop LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -847,7 +847,7 @@ error_no_error:
 #i686-Linux-2.6.15-1-k7-smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.15-1-k7-smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.15-1-k7-smp USLEEP =
-#i686-Linux-2.6.15-1-k7-smp AR = ar rc
+#i686-Linux-2.6.15-1-k7-smp AR = ar
 #i686-Linux-2.6.15-1-k7-smp RANLIB = ranlib
 #i686-Linux-2.6.15-1-k7-smp SCCLDFLAGS =
 #i686-Linux-2.6.15-1-k7-smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -868,7 +868,7 @@ error_no_error:
 #i686-Linux-2.6.17-1.2139_FC5smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.17-1.2139_FC5smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.17-1.2139_FC5smp USLEEP =
-#i686-Linux-2.6.17-1.2139_FC5smp AR = ar rc
+#i686-Linux-2.6.17-1.2139_FC5smp AR = ar
 #i686-Linux-2.6.17-1.2139_FC5smp RANLIB = ranlib
 #i686-Linux-2.6.17-1.2139_FC5smp SCCLDFLAGS =
 #i686-Linux-2.6.17-1.2139_FC5smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -889,7 +889,7 @@ error_no_error:
 #i686-Linux-2.6.17-1.2174_FC5smp                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.17-1.2174_FC5smp JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.17-1.2174_FC5smp USLEEP =
-#i686-Linux-2.6.17-1.2174_FC5smp AR = ar rc
+#i686-Linux-2.6.17-1.2174_FC5smp AR = ar
 #i686-Linux-2.6.17-1.2174_FC5smp RANLIB = ranlib
 #i686-Linux-2.6.17-1.2174_FC5smp SCCLDFLAGS =
 #i686-Linux-2.6.17-1.2174_FC5smp LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -910,7 +910,7 @@ error_no_error:
 #i686-Linux-2.6.18-3-k7                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.18-3-k7 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.18-3-k7 USLEEP =
-#i686-Linux-2.6.18-3-k7 AR = ar rc
+#i686-Linux-2.6.18-3-k7 AR = ar
 #i686-Linux-2.6.18-3-k7 RANLIB = ranlib
 #i686-Linux-2.6.18-3-k7 SCCLDFLAGS =
 #i686-Linux-2.6.18-3-k7 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -931,7 +931,7 @@ error_no_error:
 #i686-Linux-2.6.18-5-k7                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.18-5-k7 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.18-5-k7 USLEEP =
-#i686-Linux-2.6.18-5-k7 AR = ar rc
+#i686-Linux-2.6.18-5-k7 AR = ar
 #i686-Linux-2.6.18-5-k7 RANLIB = ranlib
 #i686-Linux-2.6.18-5-k7 SCCLDFLAGS =
 #i686-Linux-2.6.18-5-k7 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -952,7 +952,7 @@ error_no_error:
 #i686-Linux-2.6.18-6-k7                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.18-6-k7 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.18-6-k7 USLEEP =
-#i686-Linux-2.6.18-6-k7 AR = ar rc
+#i686-Linux-2.6.18-6-k7 AR = ar
 #i686-Linux-2.6.18-6-k7 RANLIB = ranlib
 #i686-Linux-2.6.18-6-k7 SCCLDFLAGS =
 #i686-Linux-2.6.18-6-k7 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -973,7 +973,7 @@ error_no_error:
 #i686-Linux-2.6.22.14-72.fc6                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.22.14-72.fc6 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.22.14-72.fc6 USLEEP =
-#i686-Linux-2.6.22.14-72.fc6 AR = ar rc
+#i686-Linux-2.6.22.14-72.fc6 AR = ar
 #i686-Linux-2.6.22.14-72.fc6 RANLIB = ranlib
 #i686-Linux-2.6.22.14-72.fc6 SCCLDFLAGS =
 #i686-Linux-2.6.22.14-72.fc6 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -994,7 +994,7 @@ error_no_error:
 #i686-Linux-2.6.26-2-686                -DLONG_32 -DSYSV -DLINUX
 #i686-Linux-2.6.26-2-686 JPEGCFLAGS = -O2 -DINLINE_YES
 #i686-Linux-2.6.26-2-686 USLEEP =
-#i686-Linux-2.6.26-2-686 AR = ar rc
+#i686-Linux-2.6.26-2-686 AR = ar
 #i686-Linux-2.6.26-2-686 RANLIB = ranlib
 #i686-Linux-2.6.26-2-686 SCCLDFLAGS =
 #i686-Linux-2.6.26-2-686 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1016,7 +1016,7 @@ error_no_error:
 #i686-Debian-5.0.1                -DSYSV -DLINUX
 #i686-Debian-5.0.1 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #i686-Debian-5.0.1 USLEEP =
-#i686-Debian-5.0.1 AR = ar rc
+#i686-Debian-5.0.1 AR = ar
 #i686-Debian-5.0.1 RANLIB = ranlib
 #i686-Debian-5.0.1 SCCLDFLAGS =
 #i686-Debian-5.0.1 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1038,7 +1038,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-4-amd64                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-4-amd64 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-4-amd64 USLEEP =
-#x86_64-Linux-2.6.18-4-amd64 AR = ar rc
+#x86_64-Linux-2.6.18-4-amd64 AR = ar
 #x86_64-Linux-2.6.18-4-amd64 RANLIB = ranlib
 #x86_64-Linux-2.6.18-4-amd64 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-4-amd64 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1060,7 +1060,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-5-amd64                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-5-amd64 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-5-amd64 USLEEP =
-#x86_64-Linux-2.6.18-5-amd64 AR = ar rc
+#x86_64-Linux-2.6.18-5-amd64 AR = ar
 #x86_64-Linux-2.6.18-5-amd64 RANLIB = ranlib
 #x86_64-Linux-2.6.18-5-amd64 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-5-amd64 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1082,7 +1082,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-6-amd64                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-6-amd64 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-6-amd64 USLEEP =
-#x86_64-Linux-2.6.18-6-amd64 AR = ar rc
+#x86_64-Linux-2.6.18-6-amd64 AR = ar
 #x86_64-Linux-2.6.18-6-amd64 RANLIB = ranlib
 #x86_64-Linux-2.6.18-6-amd64 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-6-amd64 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1104,7 +1104,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-92.1.10.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-92.1.10.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-92.1.10.el5 USLEEP =
-#x86_64-Linux-2.6.18-92.1.10.el5 AR = ar rc
+#x86_64-Linux-2.6.18-92.1.10.el5 AR = ar
 #x86_64-Linux-2.6.18-92.1.10.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-92.1.10.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-92.1.10.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1126,7 +1126,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-92.1.18.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-92.1.18.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-92.1.18.el5 USLEEP =
-#x86_64-Linux-2.6.18-92.1.18.el5 AR = ar rc
+#x86_64-Linux-2.6.18-92.1.18.el5 AR = ar
 #x86_64-Linux-2.6.18-92.1.18.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-92.1.18.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-92.1.18.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1148,7 +1148,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-128.1.16.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-128.1.16.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-128.1.16.el5 USLEEP =
-#x86_64-Linux-2.6.18-128.1.16.el5 AR = ar rc
+#x86_64-Linux-2.6.18-128.1.16.el5 AR = ar
 #x86_64-Linux-2.6.18-128.1.16.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-128.1.16.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-128.1.16.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1170,7 +1170,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-128.2.1.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-128.2.1.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-128.2.1.el5 USLEEP =
-#x86_64-Linux-2.6.18-128.2.1.el5 AR = ar rc
+#x86_64-Linux-2.6.18-128.2.1.el5 AR = ar
 #x86_64-Linux-2.6.18-128.2.1.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-128.2.1.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-128.2.1.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1192,7 +1192,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-128.4.1.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-128.4.1.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-128.4.1.el5 USLEEP =
-#x86_64-Linux-2.6.18-128.4.1.el5 AR = ar rc
+#x86_64-Linux-2.6.18-128.4.1.el5 AR = ar
 #x86_64-Linux-2.6.18-128.4.1.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-128.4.1.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-128.4.1.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1214,7 +1214,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-128.7.1.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-128.7.1.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-128.7.1.el5 USLEEP =
-#x86_64-Linux-2.6.18-128.7.1.el5 AR = ar rc
+#x86_64-Linux-2.6.18-128.7.1.el5 AR = ar
 #x86_64-Linux-2.6.18-128.7.1.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-128.7.1.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-128.7.1.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1236,7 +1236,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-164.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-164.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-164.el5 USLEEP =
-#x86_64-Linux-2.6.18-164.el5 AR = ar rc
+#x86_64-Linux-2.6.18-164.el5 AR = ar
 #x86_64-Linux-2.6.18-164.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-164.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-164.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1258,7 +1258,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-194.11.1.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-194.11.1.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-194.11.1.el5 USLEEP =
-#x86_64-Linux-2.6.18-194.11.1.el5 AR = ar rc
+#x86_64-Linux-2.6.18-194.11.1.el5 AR = ar
 #x86_64-Linux-2.6.18-194.11.1.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-194.11.1.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-194.11.1.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1280,7 +1280,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-194.32.1.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-194.32.1.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-194.32.1.el5 USLEEP =
-#x86_64-Linux-2.6.18-194.32.1.el5 AR = ar rc
+#x86_64-Linux-2.6.18-194.32.1.el5 AR = ar
 #x86_64-Linux-2.6.18-194.32.1.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-194.32.1.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-194.32.1.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1302,7 +1302,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-274.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-274.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-274.el5 USLEEP =
-#x86_64-Linux-2.6.18-274.el5 AR = ar rc
+#x86_64-Linux-2.6.18-274.el5 AR = ar
 #x86_64-Linux-2.6.18-274.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-274.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-274.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1324,7 +1324,7 @@ error_no_error:
 #x86_64-Linux-2.6.18-274.12.1.el5                -DSYSV -DLINUX
 #x86_64-Linux-2.6.18-274.12.1.el5 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.18-274.12.1.el5 USLEEP =
-#x86_64-Linux-2.6.18-274.12.1.el5 AR = ar rc
+#x86_64-Linux-2.6.18-274.12.1.el5 AR = ar
 #x86_64-Linux-2.6.18-274.12.1.el5 RANLIB = ranlib
 #x86_64-Linux-2.6.18-274.12.1.el5 SCCLDFLAGS =
 #x86_64-Linux-2.6.18-274.12.1.el5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1346,7 +1346,7 @@ error_no_error:
 #x86_64-Linux-2.6.25-rc7                -DSYSV -DLINUX
 #x86_64-Linux-2.6.25-rc7 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Linux-2.6.25-rc7 USLEEP =
-#x86_64-Linux-2.6.25-rc7 AR = ar rc
+#x86_64-Linux-2.6.25-rc7 AR = ar
 #x86_64-Linux-2.6.25-rc7 RANLIB = ranlib
 #x86_64-Linux-2.6.25-rc7 SCCLDFLAGS =
 #x86_64-Linux-2.6.25-rc7 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1367,7 +1367,7 @@ error_no_error:
 #x86_64-Linux-2.6.26-2-amd64                -DSYSV -DLINUX
 #x86_64-Linux-2.6.26-2-amd64 JPEGCFLAGS = -O2 -DINLINE_YES
 #x86_64-Linux-2.6.26-2-amd64 USLEEP =
-#x86_64-Linux-2.6.26-2-amd64 AR = ar rc
+#x86_64-Linux-2.6.26-2-amd64 AR = ar
 #x86_64-Linux-2.6.26-2-amd64 RANLIB = ranlib
 #x86_64-Linux-2.6.26-2-amd64 SCCLDFLAGS =
 #x86_64-Linux-2.6.26-2-amd64 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1388,7 +1388,7 @@ error_no_error:
 #x86_64-Linux-2.6.32-5-amd64                -DSYSV -DLINUX
 #x86_64-Linux-2.6.32-5-amd64 JPEGCFLAGS = -O2 -DINLINE_YES
 #x86_64-Linux-2.6.32-5-amd64 USLEEP =
-#x86_64-Linux-2.6.32-5-amd64 AR = ar rc
+#x86_64-Linux-2.6.32-5-amd64 AR = ar
 #x86_64-Linux-2.6.32-5-amd64 RANLIB = ranlib
 #x86_64-Linux-2.6.32-5-amd64 SCCLDFLAGS =
 #x86_64-Linux-2.6.32-5-amd64 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1410,7 +1410,7 @@ error_no_error:
 #x86_64-Debian-5.0.1                -DSYSV -DLINUX
 #x86_64-Debian-5.0.1 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Debian-5.0.1 USLEEP =
-#x86_64-Debian-5.0.1 AR = ar rc
+#x86_64-Debian-5.0.1 AR = ar
 #x86_64-Debian-5.0.1 RANLIB = ranlib
 #x86_64-Debian-5.0.1 SCCLDFLAGS =
 #x86_64-Debian-5.0.1 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1432,7 +1432,7 @@ error_no_error:
 #x86_64-Gentoo-2.0.1                -DSYSV -DLINUX
 #x86_64-Gentoo-2.0.1 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
 #x86_64-Gentoo-2.0.1 USLEEP =
-#x86_64-Gentoo-2.0.1 AR = ar rc
+#x86_64-Gentoo-2.0.1 AR = ar
 #x86_64-Gentoo-2.0.1 RANLIB = ranlib
 #x86_64-Gentoo-2.0.1 SCCLDFLAGS =
 #x86_64-Gentoo-2.0.1 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1453,7 +1453,7 @@ error_no_error:
 #armv7l-Linux-2.6.28-omap1                -DLONG_32 -DSYSV -DLINUX
 #armv7l-Linux-2.6.28-omap1 JPEGCFLAGS = -O2 -DINLINE_YES
 #armv7l-Linux-2.6.28-omap1 USLEEP =
-#armv7l-Linux-2.6.28-omap1 AR = ar rc
+#armv7l-Linux-2.6.28-omap1 AR = ar
 #armv7l-Linux-2.6.28-omap1 RANLIB = ranlib
 #armv7l-Linux-2.6.28-omap1 SCCLDFLAGS =
 #armv7l-Linux-2.6.28-omap1 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1478,7 +1478,7 @@ error_no_error:
 #i386-FreeBSD-2.2-STABLE                -DLONG_32 -DSYSV -DFREEBSD
 #i386-FreeBSD-2.2-STABLE JPEGCFLAGS = -O2 -DINLINE_YES
 #i386-FreeBSD-2.2-STABLE USLEEP =
-#i386-FreeBSD-2.2-STABLE AR = ar rc
+#i386-FreeBSD-2.2-STABLE AR = ar
 #i386-FreeBSD-2.2-STABLE RANLIB = ranlib
 #i386-FreeBSD-2.2-STABLE SCCLDFLAGS =
 #i386-FreeBSD-2.2-STABLE LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1495,7 +1495,7 @@ error_no_error:
 #alpha-OSF1-V3.2                -ieee_with_no_inexact -DSGI -Dsgi
 #alpha-OSF1-V3.2 JPEGCFLAGS = -O4 -migrate -ieee_with_no_inexact
 #alpha-OSF1-V3.2 USLEEP =
-#alpha-OSF1-V3.2 AR = ar rc
+#alpha-OSF1-V3.2 AR = ar
 #alpha-OSF1-V3.2 RANLIB = ranlib
 #alpha-OSF1-V3.2 SCCLDFLAGS = -migrate
 #alpha-OSF1-V3.2 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a -lX11
@@ -1510,7 +1510,7 @@ error_no_error:
 #alpha-OSF1-V4.0                -ieee_with_no_inexact -DSGI -Dsgi
 #alpha-OSF1-V4.0 JPEGCFLAGS = -O4 -migrate -ieee_with_no_inexact
 #alpha-OSF1-V4.0 USLEEP =
-#alpha-OSF1-V4.0 AR = ar rc
+#alpha-OSF1-V4.0 AR = ar
 #alpha-OSF1-V4.0 RANLIB = ranlib
 #alpha-OSF1-V4.0 SCCLDFLAGS = -migrate
 #alpha-OSF1-V4.0 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a -lX11
@@ -1523,7 +1523,7 @@ error_no_error:
 #alpha-Linux-2.0.35 ENCODECFLAGS = -I/usr/include -O2 -ieee -DSYSV -DLINUX
 #alpha-Linux-2.0.35 JPEGCFLAGS = -O2 -ieee -DINLINE_YES
 #alpha-Linux-2.0.35 USLEEP =
-#alpha-Linux-2.0.35 AR = ar rc
+#alpha-Linux-2.0.35 AR = ar
 #alpha-Linux-2.0.35 RANLIB = ranlib
 #alpha-Linux-2.0.35 SCCLDFLAGS =
 #alpha-Linux-2.0.35 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1538,7 +1538,7 @@ error_no_error:
 #IP7-IRIX-4.0.5 ENCODECFLAGS = -I/usr/include -O -DSGI
 #IP7-IRIX-4.0.5 JPEGCFLAGS = -O
 #IP7-IRIX-4.0.5 USLEEP = usleep.o
-#IP7-IRIX-4.0.5 AR = ar rc
+#IP7-IRIX-4.0.5 AR = ar
 #IP7-IRIX-4.0.5 RANLIB = cat >/dev/null
 #IP7-IRIX-4.0.5 SCCLDFLAGS =
 #IP7-IRIX-4.0.5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a -lX11
@@ -1551,7 +1551,7 @@ error_no_error:
 #IP12-IRIX-4.0.5 ENCODECFLAGS = -I/usr/include -O -DSGI
 #IP12-IRIX-4.0.5 JPEGCFLAGS = -O
 #IP12-IRIX-4.0.5 USLEEP = usleep.o
-#IP12-IRIX-4.0.5 AR = ar rc
+#IP12-IRIX-4.0.5 AR = ar
 #IP12-IRIX-4.0.5 RANLIB = cat >/dev/null
 #IP12-IRIX-4.0.5 SCCLDFLAGS =
 #IP12-IRIX-4.0.5 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a -lX11
@@ -1565,7 +1565,7 @@ error_no_error:
 #IP22-IRIX-5.3 ENCODECFLAGS = -I/usr/include -O2 -non_shared
 #IP22-IRIX-5.3 JPEGCFLAGS = -O2 -non_shared
 #IP22-IRIX-5.3 USLEEP = usleep.o
-#IP22-IRIX-5.3 AR = ar rc
+#IP22-IRIX-5.3 AR = ar
 #IP22-IRIX-5.3 RANLIB = cat >/dev/null
 #IP22-IRIX-5.3 SCCLDFLAGS = -non_shared
 #IP22-IRIX-5.3 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1581,7 +1581,7 @@ error_no_error:
 #IP25-IRIX64-6.2 ENCODECFLAGS = -I/usr/include -O2 -non_shared
 #IP25-IRIX64-6.2 JPEGCFLAGS = -O2 -non_shared
 #IP25-IRIX64-6.2 USLEEP = usleep.o
-#IP25-IRIX64-6.2 AR = ar rc
+#IP25-IRIX64-6.2 AR = ar
 #IP25-IRIX64-6.2 RANLIB = cat >/dev/null
 #IP25-IRIX64-6.2 SCCLDFLAGS = -non_shared
 #IP25-IRIX64-6.2 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -1597,7 +1597,7 @@ error_no_error:
 #IP28-IRIX64-6.2 ENCODECFLAGS = -I/usr/include -O2 -non_shared
 #IP28-IRIX64-6.2 JPEGCFLAGS = -O2 -non_shared
 #IP28-IRIX64-6.2 USLEEP = usleep.o
-#IP28-IRIX64-6.2 AR = ar rc
+#IP28-IRIX64-6.2 AR = ar
 #IP28-IRIX64-6.2 RANLIB = cat >/dev/null
 #IP28-IRIX64-6.2 SCCLDFLAGS = -non_shared
 #IP28-IRIX64-6.2 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
@@ -2345,12 +2345,12 @@ cderror.h
 
 QobiScheme.a: $(OBJECTS) usleep.o
 	-rm -f QobiScheme.a
-	$(AR) QobiScheme.a $(OBJECTS) $(USLEEP)
+	$(AR) rc QobiScheme.a $(OBJECTS) $(USLEEP)
 	$(RANLIB) QobiScheme.a
 
 QobiScheme-AD.a: $(AD_OBJECTS) usleep.o
 	-rm -f QobiScheme-AD.a
-	$(AR) QobiScheme-AD.a $(AD_OBJECTS) $(USLEEP)
+	$(AR) rc QobiScheme-AD.a $(AD_OBJECTS) $(USLEEP)
 	$(RANLIB) QobiScheme-AD.a
 
 qsci.o: qsci.sc xlib.sch QobiScheme-AD.sch QobiScheme.load
