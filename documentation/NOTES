@@ -1,0 +1,16 @@
+These are QobiScheme compilation/installation notes, for getting
+things done with minimal use of the complicated parts of the
+infrastructure.
+
+cd source
+
+make ERROR_OK=_no_error \
+     CFLAGS='-O3 -Wall' \
+     PLAYCFLAGS='-O3 -Wall -ffast-math -DNDEBUG \
+      -DNONANSI_INCLUDES -DSIG_ONE_PARAM -DDEFAULT_ORDERED_DITHER' \
+     ENCODECFLAGS='-O3 -Wall -ffast-math -DSYSV -DLINUX' \
+     JPEGCFLAGS='-O3 -Wall -ffast-math -DINLINE_YES' \
+     SCCFLAGS='$(CFLAGS) -I /usr/lib/scheme2c -scgc 1 -sch 512 -scmh 1000' \
+     LRL='-L /usr/lib/scheme2c -ls2cxl -ls2c -lX11' \
+     ADLRL='$(LRL)' \
+     RANLIB=ranlib
