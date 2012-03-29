@@ -1605,6 +1605,8 @@ error_no_error:
 #IP28-IRIX64-6.2 ADLRL = QobiScheme-AD.a $(INSTALLLIBA)/scxl.a\
 #IP28-IRIX64-6.2         $(INSTALLLIBA)/libX11.a
 
+SCC = s2cc
+
 OBJECTS = QobiScheme.o nobuff.o xflush.o os_dep.o dither.o \
 16bit.o gdith.o ordered.o 2x2.o gray.o ordered2.o ctrlbar.o hybrid.o \
 parseblock.o decoders.o hybriderr.o play_api.o floatdct.o play_jrevdct.o \
@@ -1885,15 +1887,15 @@ publish: release
 # Compilation rules and dependencies
 # ----------------------------------
 body: body.sc
-	scc -cc $(CC) $(SCCFLAGS) -o body body.sc
+	$(SCC) -cc $(CC) $(SCCFLAGS) -o body body.sc
 	-rm -f body.c
 
 QobiScheme.o: QobiScheme.sc xlib.sch
-	scc -cc $(CC) $(SCCFLAGS) -c QobiScheme.sc
+	$(SCC) -cc $(CC) $(SCCFLAGS) -c QobiScheme.sc
 	-rm -f QobiScheme.c
 
 QobiScheme-AD.o: QobiScheme-AD.sc xlib.sch
-	scc -cc $(CC) $(SCCFLAGS) -c QobiScheme-AD.sc
+	$(SCC) -cc $(CC) $(SCCFLAGS) -c QobiScheme-AD.sc
 	-rm -f QobiScheme-AD.c
 
 usleep.o: usleep.c
@@ -2350,15 +2352,15 @@ QobiScheme-AD.a: $(AD_OBJECTS) usleep.o
 	$(RANLIB) QobiScheme-AD.a
 
 qsci.o: qsci.sc xlib.sch QobiScheme-AD.sch QobiScheme.load
-	scc -cc $(CC) $(SCCFLAGS) -c qsci.sc
+	$(SCC) -cc $(CC) $(SCCFLAGS) -c qsci.sc
 	rm -f qsci.c
 
 qsci: qsci.o QobiScheme-AD.a
-	scc -cc $(CC) $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
+	$(SCC) -cc $(CC) $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
 
 sch.o: sch.sc xlib.sch QobiScheme.sch
-	scc -cc $(CC) $(SCCFLAGS) -c sch.sc
+	$(SCC) -cc $(CC) $(SCCFLAGS) -c sch.sc
 	rm -f sch.c
 
 sch: sch.o QobiScheme.a
-	scc -cc $(CC) $(SCCLDFLAGS) -o sch sch.o $(LRL)
+	$(SCC) -cc $(CC) $(SCCLDFLAGS) -o sch sch.o $(LRL)
