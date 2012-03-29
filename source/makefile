@@ -2357,12 +2357,12 @@ qsci.o: qsci.sc xlib.sch QobiScheme-AD.sch QobiScheme.load
 	$(SCC) -cc "$(SCCCC)" $(SCCFLAGS) -c qsci.sc
 	rm -f qsci.c
 
-qsci: qsci.o QobiScheme-AD.a
-	$(SCC) -cc "$(SCCCC)" $(SCCLDFLAGS) -o qsci qsci.o $(ADLRL)
+qsci: qsci.o QobiScheme-AD.a QobiScheme.a
+	$(SCC) -cc "$(SCCCC)" $(SCCLDFLAGS) -o qsci $^ $(ADLRL)
 
 sch.o: sch.sc xlib.sch QobiScheme.sch
 	$(SCC) -cc "$(SCCCC)" $(SCCFLAGS) -c sch.sc
 	rm -f sch.c
 
 sch: sch.o QobiScheme.a
-	$(SCC) -cc "$(SCCCC)" $(SCCLDFLAGS) -o sch sch.o $(LRL)
+	$(SCC) -cc "$(SCCCC)" $(SCCLDFLAGS) -o sch $^ $(LRL)
