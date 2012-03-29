@@ -4,8 +4,8 @@
 ;;; Copyright 1996 and 1997 University of Vermont. All rights reserved.
 ;;; Copyright 1997, 1998, 1999, 2000, and 2001 NEC Research Institute, Inc. All
 ;;; rights reserved.
-;;; Copyright 2002, 2003, 2004, 2005, 2006, 2007, 2008, and 2009 Purdue
-;;; University. All rights reserved.
+;;; Copyright 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, and 2011
+;;; Purdue University. All rights reserved.
 
 (module QobiScheme)
 
@@ -189,47 +189,47 @@
      ((dual-number? x2)
       (cond ((<_e (dual-number-epsilon x1)
 		  (dual-number-epsilon x2))
-	     (dual-number (dual-number-epsilon x2)
-			  (loop x1 (dual-number-primal x2))
-			  (* (df/dx2 x1 (dual-number-primal x2))
-			     (dual-number-perturbation x2))))
+	     (make-dual-number (dual-number-epsilon x2)
+			       (loop x1 (dual-number-primal x2))
+			       (* (df/dx2 x1 (dual-number-primal x2))
+				  (dual-number-perturbation x2))))
 	    ((<_e (dual-number-epsilon x2)
 		  (dual-number-epsilon x1))
-	     (dual-number (dual-number-epsilon x1)
-			  (loop (dual-number-primal x1) x2)
-			  (* (df/dx1 (dual-number-primal x1) x2)
-			     (dual-number-perturbation x1))))
+	     (make-dual-number (dual-number-epsilon x1)
+			       (loop (dual-number-primal x1) x2)
+			       (* (df/dx1 (dual-number-primal x1) x2)
+				  (dual-number-perturbation x1))))
 	    (else
-	     (dual-number (dual-number-epsilon x1)
-			  (loop (dual-number-primal x1)
-				(dual-number-primal x2))
-			  (+ (* (df/dx1 (dual-number-primal x1)
-					(dual-number-primal x2))
-				(dual-number-perturbation x1))
-			     (* (df/dx2 (dual-number-primal x1)
-					(dual-number-primal x2))
-				(dual-number-perturbation x2)))))))
+	     (make-dual-number (dual-number-epsilon x1)
+			       (loop (dual-number-primal x1)
+				     (dual-number-primal x2))
+			       (+ (* (df/dx1 (dual-number-primal x1)
+					     (dual-number-primal x2))
+				     (dual-number-perturbation x1))
+				  (* (df/dx2 (dual-number-primal x1)
+					     (dual-number-primal x2))
+				     (dual-number-perturbation x2)))))))
      ((tape? x2)
       (if (<_e (dual-number-epsilon x1) (tape-epsilon x2))
 	  (tape (tape-epsilon x2)
 		(loop x1 (tape-primal x2))
 		(list (df/dx2 x1 (tape-primal x2)))
 		(list x2))
-	  (dual-number (dual-number-epsilon x1)
-		       (loop (dual-number-primal x1) x2)
-		       (* (df/dx1 (dual-number-primal x1) x2)
-			  (dual-number-perturbation x1)))))
-     (else (dual-number (dual-number-epsilon x1)
-			(loop (dual-number-primal x1) x2)
-			(* (df/dx1 (dual-number-primal x1) x2)
-			   (dual-number-perturbation x1))))))
+	  (make-dual-number (dual-number-epsilon x1)
+			    (loop (dual-number-primal x1) x2)
+			    (* (df/dx1 (dual-number-primal x1) x2)
+			       (dual-number-perturbation x1)))))
+     (else (make-dual-number (dual-number-epsilon x1)
+			     (loop (dual-number-primal x1) x2)
+			     (* (df/dx1 (dual-number-primal x1) x2)
+				(dual-number-perturbation x1))))))
    ((tape? x1)
     (cond ((dual-number? x2)
 	   (if (<_e (tape-epsilon x1) (dual-number-epsilon x2))
-	       (dual-number (dual-number-epsilon x2)
-			    (loop x1 (dual-number-primal x2))
-			    (* (df/dx2 x1 (dual-number-primal x2))
-			       (dual-number-perturbation x2)))
+	       (make-dual-number (dual-number-epsilon x2)
+				 (loop x1 (dual-number-primal x2))
+				 (* (df/dx2 x1 (dual-number-primal x2))
+				    (dual-number-perturbation x2)))
 	       (tape (tape-epsilon x1)
 		     (loop (tape-primal x1) x2)
 		     (list (df/dx1 (tape-primal x1) x2))
@@ -255,10 +255,10 @@
 		      (list (df/dx1 (tape-primal x1) x2))
 		      (list x1)))))
    (else (cond ((dual-number? x2)
-		(dual-number (dual-number-epsilon x2)
-			     (loop x1 (dual-number-primal x2))
-			     (* (df/dx2 x1 (dual-number-primal x2))
-				(dual-number-perturbation x2))))
+		(make-dual-number (dual-number-epsilon x2)
+				  (loop x1 (dual-number-primal x2))
+				  (* (df/dx2 x1 (dual-number-primal x2))
+				     (dual-number-perturbation x2))))
 	       ((tape? x2)
 		(tape (tape-epsilon x2)
 		      (loop x1 (tape-primal x2))
@@ -320,10 +320,10 @@
 (define (lift-real->real f df/dx x)
  (let loop ((x x))
   (cond ((dual-number? x)
-	 (dual-number (dual-number-epsilon x)
-		      (loop (dual-number-primal x))
-		      (* (df/dx (dual-number-primal x))
-			 (dual-number-perturbation x))))
+	 (make-dual-number (dual-number-epsilon x)
+			   (loop (dual-number-primal x))
+			   (* (df/dx (dual-number-primal x))
+			      (dual-number-perturbation x))))
 	((tape? x)
 	 (tape (tape-epsilon x)
 	       (loop (tape-primal x))
@@ -673,6 +673,32 @@
  (let ((archive-date (read-file (tmp "archive-date"))))
   (rm (tmp "archive-date"))
   (first archive-date)))
+
+(define-c-external (c-getpid) int "getpid")
+
+(define (getpid) (c-getpid))
+
+(define *unique-temporary-file-number* 0)
+
+(define (username)
+ (cond ((getenv "USERNAME") (getenv "USERNAME"))
+       ((getenv "USER") (getenv "USER"))
+       (else "USERNAME")))
+
+(define (unique-temporary-file file)
+ (set! *unique-temporary-file-number* (+ *unique-temporary-file-number* 1))
+ (format #f
+	 "~a_~a_~a_~a.~a"
+	 (strip-extension file)
+	 (username)
+	 (getpid)
+	 *unique-temporary-file-number*
+	 (if (has-extension? file) (extension file) "")))
+
+(define (with-temporary-file prefix f)
+ (let* ((filename (unique-temporary-file prefix)) (result (f filename)))
+  (rm-if-necessary filename)
+  result))
 
 ;;; Structures
 
@@ -2155,11 +2181,11 @@
 	      (lambda (port) (pp object port) (newline port))))))
 
 (define (read-from-string string)
- (rm (tmp "cdslib.tmp"))
- (write-file (list string) (tmp "cdslib.tmp"))
- (let ((input (call-with-input-file (tmp "cdslib.tmp") read)))
-  (rm (tmp "cdslib.tmp"))
-  input))
+ (with-temporary-file
+  (tmp "cdslib.tmp")
+  (lambda (file)
+   (write-file (list string) file)
+   (call-with-input-file file read))))
 
 ;;; Pathnames
 
@@ -2251,81 +2277,59 @@
 		      (cons #\\ c)
 		      c))))))
 
-(define (file-exists? pathname)
- (when (string=? pathname "-") (panic "Invalid pathname"))
- (system (format #f "~als -ld ~a >~a 2>~a"
-		 (if *system-V?* "" "/usr/5bin/")
-		 (quotify pathname)
-		 (tmp "QobiScheme.ls")
-		 (tmp "QobiScheme.stderr")))
- (unless (or (eof-object?
-	      (call-with-input-file (tmp "QobiScheme.stderr") read-line))
-	     (substring?
-	      (format #f "No such file or directory")
-	      (call-with-input-file (tmp "QobiScheme.stderr") read-line)))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.ls")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  (fuck-up))
- (let ((result (not (eof-object?
-		     (call-with-input-file (tmp "QobiScheme.ls") read-line)))))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.ls")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  result))
+(define-c-external (c-file-exists? pointer) int "c_file_exists")
+
+(define (file-exists? pathname) (= (c-file-exists? pathname) 1))
 
 (define (directory-list pattern)
- (system
-  (format #f "ls -A ~a >~a 2>~a"
-	  (quotify pattern) (tmp "QobiScheme.ls") (tmp "QobiScheme.stderr")))
- (unless (or (eof-object?
-	      (call-with-input-file (tmp "QobiScheme.stderr") read-line))
-	     (substring?
-	      (format #f "No such file or directory")
-	      (call-with-input-file (tmp "QobiScheme.stderr") read-line)))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.ls")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  (fuck-up))
- (let ((result (read-file (tmp "QobiScheme.ls"))))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.ls")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  result))
+ (with-temporary-file
+  (tmp "QobiScheme.ls")
+  (lambda (ls)
+   (with-temporary-file
+    (tmp "QobiScheme.stderr")
+    (lambda (stderr)
+     (system (format #f "ls -A ~a >~a 2>~a" (quotify pattern) ls stderr))
+     (or (eof-object? (call-with-input-file stderr read-line))
+	 (substring? (format #f "No such file or directory")
+		     (call-with-input-file stderr read-line))
+	 (fuck-up))
+     (read-file ls))))))
 
 (define (recursive-directory-list pathname)
- (when (string=? pathname "-") (panic "Invalid pathname"))
- (unless (file-exists? pathname)
-  (panic "Can't get recursive directory list for nonexistent file"))
- (system (format #f "find ~a -print >~a 2>~a"
-		 (quotify pathname)
-		 (tmp "QobiScheme.find")
-		 (tmp "QobiScheme.stderr")))
- (unless (eof-object?
-	  (call-with-input-file (tmp "QobiScheme.stderr") read-line))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.find")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  (fuck-up))
- (let ((result (read-file (tmp "QobiScheme.find"))))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.find")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  result))
+ (with-temporary-file
+  (tmp "QobiScheme.find")
+  (lambda (find)
+   (with-temporary-file
+    (tmp "QobiScheme.stderr")
+    (lambda (stderr)
+     (system
+      (format #f "find ~a -print >~a 2>~a" (quotify pathname) find stderr))
+     (or (eof-object? (call-with-input-file stderr read-line))
+	 (substring? (format #f "No such file or directory")
+		     (call-with-input-file stderr read-line))
+	 (fuck-up))
+     (read-file find))))))
 
 (define (file-info pathname id?)
  (when (string=? pathname "-") (panic "Invalid pathname"))
  (unless (file-exists? pathname) (panic "Can't get info for nonexistent file"))
- (system (format #f "~als -~ad ~a >~a 2>~a"
-		 (if *system-V?* "" "/usr/5bin/")
-		 (if id? "n" "l")
-		 (quotify pathname)
-		 (tmp "QobiScheme.ls")
-		 (tmp "QobiScheme.stderr")))
- (unless (eof-object?
-	  (call-with-input-file (tmp "QobiScheme.stderr") read-line))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.ls")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  (fuck-up))
- (let ((result (call-with-input-file (tmp "QobiScheme.ls") read-line)))
-  (when (eof-object? result) (fuck-up))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.ls")))
-  (system (format #f "rm -f ~a" (tmp "QobiScheme.stderr")))
-  result))
+ (with-temporary-file
+  (tmp "QobiScheme.ls")
+  (lambda (ls)
+   (with-temporary-file
+    (tmp "QobiScheme.stderr")
+    (lambda (stderr)
+     (system (format #f "~als -~ad ~a >~a 2>~a"
+		     (if *system-V?* "" "/usr/5bin/")
+		     (if id? "n" "l")
+		     (quotify pathname)
+		     ls
+		     stderr))
+     (unless (eof-object? (call-with-input-file stderr read-line))
+      (fuck-up))
+     (let ((result (call-with-input-file ls read-line)))
+      (when (eof-object? result) (fuck-up))
+      result))))))
 
 (define (file-permission-flags pathname) (field-ref (file-info pathname #f) 0))
 
@@ -2391,9 +2395,11 @@
  (unless (zero? (system (format #f "mkdir ~a 2>/dev/null" (quotify pathname))))
   (panic "MKDIR failed")))
 
+(define (rm-if-necessary pathname)
+ (system (format #f "rm -rf ~a" (quotify pathname))))
+
 (define (rm pathname)
- (unless (zero? (system (format #f "rm -rf ~a" (quotify pathname))))
-  (panic "RM failed")))
+ (unless (zero? (rm-if-necessary pathname)) (panic "RM failed")))
 
 (define (mkfifo pathname)
  (unless (zero? (system (format #f "mkfifo ~a" (quotify pathname))))
@@ -4774,7 +4780,7 @@
 	      (ppm? ppm)
 	      (= (pnm-width pbm) (pnm-width ppm))
 	      (= (pnm-height pbm) (pnm-height ppm)))
-  (panic "Arguments to PBM-AND are not matching PBMs"))
+  (panic "Arguments to PBM-PPM-AND are not matching PBMs"))
  (make-ppm (ppm-raw? ppm)
 	   (ppm-maxval ppm)
 	   (map-vector
@@ -6189,6 +6195,7 @@
 	      ((= (xlookupkeysym event 0) xk_prior) (execute-key (meta #\v)))
 	      ((= (xlookupkeysym event 0) xk_next) (execute-key (control #\v)))
 	      ((= (xlookupkeysym event 0) xk_end) (execute-key (meta #\>)))))
+	    ((= event-type keyrelease) #f)
 	    (else (panic "Unrecognized event: ~s" event-type)))
       (loop)))))))
 
@@ -6198,7 +6205,7 @@
 
 (define abort
  (lambda ()
-  (xbell *display* 100)
+  (system "xkbbell")
   (set! *help?* #f)
   (redraw-buttons)
   (redraw-display-pane)
@@ -8972,15 +8979,12 @@
 
 (define (<_e e1 e2) (old-<-two e1 e2))
 
-(define (dual-number e x x-prime)
- (if (zero? x-prime) x (make-dual-number e x x-prime)))
-
 (define (tape e primal factors tapes) (make-tape e primal factors tapes 0 0.0))
 
 (define (derivative-F f)
  (lambda (x)
   (set! *e* (+ *e* 1))
-  (let* ((y (f (dual-number *e* x 1.0)))
+  (let* ((y (f (make-dual-number *e* x 1.0)))
 	 (y-prime (if (or (not (dual-number? y))
 			  (<_e (dual-number-epsilon y) *e*))
 		      0.0

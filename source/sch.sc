@@ -4,8 +4,8 @@
 ;;; Copyright 1996 and 1997 University of Vermont. All rights reserved.
 ;;; Copyright 1997, 1998, 1999, 2000, and 2001 NEC Research Institute, Inc. All
 ;;; rights reserved.
-;;; Copyright 2002, 2003, 2004, 2005, and 2006 Purdue University. All rights
-;;; reserved.
+;;; Copyright 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, and 2011
+;;; Purdue University. All rights reserved.
 
 (module sch (with QobiScheme xlib) (main main))
 
