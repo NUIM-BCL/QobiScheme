@@ -1,8 +1,10 @@
-/*.o
-/QobiScheme-AD.a
+*.a
+*.o
 /QobiScheme-AD.c
-/QobiScheme.a
 /QobiScheme.c
 /body
 /body.c
+/qsci
 /qsci.c
+/sch
+/sch.c
