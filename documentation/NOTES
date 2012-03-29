@@ -1,8 +1,8 @@
-These are QobiScheme compilation/installation notes, for getting
-things done with minimal use of the complicated parts of the
-infrastructure.
+#! /bin/sh
 
-cd source
+# These are QobiScheme compilation/installation notes, for getting
+# things done with minimal use of the complicated parts of the
+# infrastructure.
 
 make ERROR_OK=_no_error \
      CFLAGS='-O3 -Wall' \
