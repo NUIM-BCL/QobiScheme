@@ -11,11 +11,11 @@
 			       qobi@purdue.edu
 		       http://www.ece.purdue.edu/~qobi
 
-			    Monday 16 January 2012
+			   Wednesday 22 August 2012
 
 				 INTRODUCTION
 
-This is release 1.46 of QobiScheme.  It is the underlying substrate for most of
+This is release 1.47 of QobiScheme.  It is the underlying substrate for most of
 the Scheme software that is produced by me and my students.  Before you
 install QobiScheme you must first install Infrastructure, which you can obtain
 by anonymous FTP from
@@ -26,10 +26,10 @@ This release of QobiScheme requires version 1.27 of Infrastructure, or better.
 
 To compile QobiScheme, first unpack the distribution:
 
-% uncompress QobiScheme-1.46.tar.Z
-% tar xvf QobiScheme-1.46.tar
-% rm QobiScheme-1.46.tar
-% cd QobiScheme-1.46/source
+% uncompress QobiScheme-1.47.tar.Z
+% tar xvf QobiScheme-1.47.tar
+% rm QobiScheme-1.47.tar
+% cd QobiScheme-1.47/source
 
 The makefile for QobiScheme is distributed with architecture-specific
 variables for the several architectures.  Before compiling, you should do:
@@ -85,9 +85,9 @@ no warrantee.  You are free to use, copy, and distribute this software provided
 that:
 
  1. You report *ALL* bugs to Bug-QobiScheme@AI.MIT.EDU whether or not you
-    need them fixed.  Include the version number (1.46) in the message.
+    need them fixed.  Include the version number (1.47) in the message.
  2. You report *ALL* bugs that you fixed to Bug-QobiScheme@AI.MIT.EDU.
-    Include the version number (1.46) in the message.
+    Include the version number (1.47) in the message.
  3. You inform me that you obtained a copy of QobiScheme by sending a message
     to Info-QobiScheme-Request@AI.MIT.EDU to be put on the
     Info-QobiScheme@AI.MIT.EDU mailing list.
