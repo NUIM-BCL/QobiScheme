@@ -12,7 +12,7 @@ INSTALLBINA = $(INSTALLBIN)/$(ARCHITECTURE_PATH)
 INSTALLINCLUDE = $(INSTALLDIR)/include
 INSTALLINCLUDEA = $(INSTALLINCLUDE)/$(ARCHITECTURE_PATH)
 
-RELEASE_VERSION = 1.46
+RELEASE_VERSION = 1.47
 RELEASE_FILE = QobiScheme-$(RELEASE_VERSION)
 
 all: error$(ERROR_OK) body qsci sch
@@ -1332,6 +1332,28 @@ error_no_error:
 #x86_64-Linux-2.6.18-274.12.1.el5 ADLRL = QobiScheme-AD.a $(INSTALLLIBA)/scxl.a\
 #x86_64-Linux-2.6.18-274.12.1.el5         -L/usr/X11R6/lib -lX11
 
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 CC = gcc
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 CFLAGS = -O2 -mno-sse2 -mno-sse3
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 SCCFLAGS = -O2 -mno-sse2 -mno-sse3
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 PLAYCFLAGS = -O2 -mno-sse2 -mno-sse3 -ffast-math\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64              -finline-functions -DNDEBUG\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64              -DNONANSI_INCLUDES -DSIG_ONE_PARAM\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64              -I/usr/include -DDEFAULT_ORDERED_DITHER
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 ENCODECFLAGS = -I/usr/include\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64                -fomit-frame-pointer\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64                -ffast-math -finline-functions -O2\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64                -mno-sse2 -mno-sse3\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64                -DSYSV -DLINUX
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 JPEGCFLAGS = -O2 -mno-sse2 -mno-sse3 -DINLINE_YES
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 USLEEP =
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 AR = ar rc
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 RANLIB = ranlib
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 SCCLDFLAGS =
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64       -L/usr/X11R6/lib -lX11
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64 ADLRL = QobiScheme-AD.a $(INSTALLLIBA)/scxl.a\
+#x86_64-Linux-2.6.32-279.1.1.el6.x86_64         -L/usr/X11R6/lib -lX11
+
 #x86_64-Linux-2.6.25-rc7 CC = gcc
 #x86_64-Linux-2.6.25-rc7 CFLAGS = -O2 -mno-sse2 -mno-sse3
 #x86_64-Linux-2.6.25-rc7 SCCFLAGS = -O2 -mno-sse2 -mno-sse3
@@ -1395,6 +1417,27 @@ error_no_error:
 #x86_64-Linux-2.6.32-5-amd64       -L/usr/X11R6/lib -lX11 -lsigsegv
 #x86_64-Linux-2.6.32-5-amd64 ADLRL = QobiScheme-AD.a $(INSTALLLIBA)/scxl.a\
 #x86_64-Linux-2.6.32-5-amd64         -L/usr/X11R6/lib -lX11 -lsigsegv
+
+#x86_64-Linux CC = gcc -Wall
+#x86_64-Linux CFLAGS = -O2
+#x86_64-Linux SCCFLAGS = -O2
+#x86_64-Linux PLAYCFLAGS = -O2 -ffast-math\
+#x86_64-Linux              -finline-functions -DNDEBUG\
+#x86_64-Linux              -DNONANSI_INCLUDES -DSIG_ONE_PARAM\
+#x86_64-Linux              -I/usr/include -DDEFAULT_ORDERED_DITHER
+#x86_64-Linux ENCODECFLAGS = -I/usr/include\
+#x86_64-Linux                -fomit-frame-pointer\
+#x86_64-Linux                -ffast-math -finline-functions -O2\
+#x86_64-Linux                -DSYSV -DLINUX
+#x86_64-Linux JPEGCFLAGS = -O2 -DINLINE_YES
+#x86_64-Linux USLEEP =
+#x86_64-Linux AR = ar rc
+#x86_64-Linux RANLIB = ranlib
+#x86_64-Linux SCCLDFLAGS =
+#x86_64-Linux LRL = QobiScheme.a $(INSTALLLIBA)/scxl.a\
+#x86_64-Linux       -L/usr/X11R6/lib -lX11
+#x86_64-Linux ADLRL = QobiScheme-AD.a $(INSTALLLIBA)/scxl.a\
+#x86_64-Linux         -L/usr/X11R6/lib -lX11
 
 #x86_64-Debian-5.0.1 CC = gcc -Wall
 #x86_64-Debian-5.0.1 CFLAGS = -O2 -mno-sse2 -mno-sse3
