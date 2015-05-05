@@ -12,8 +12,8 @@ dnl AC_CONFIG_HEADERS([config.h])
 AC_PROG_CC
 AC_PROG_RANLIB
 AC_CHECK_PROG([AR], [ar], [ar])
-AC_CHECK_PROG([SCC], [scc], [scc], [reject])
-AC_CHECK_PROG([SCH], [sch], [sch], [reject])
+AC_CHECK_PROG([SCC], [scc], [scc], [false])
+AC_CHECK_PROG([SCH], [sch], [sch], [false])
 
 # Checks for libraries.
 AC_CHECK_LIB([X11], [XOpenDisplay])
